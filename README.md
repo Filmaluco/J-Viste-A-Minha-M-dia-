@@ -5,13 +5,13 @@
 
 ###### Built using:  [![androidStudio.svg](https://img.shields.io/badge/AndroidStudio-x-orange.svg)]() [![AndroidAPI.svg](https://img.shields.io/badge/API-x-orange.svg)]() [![gradle.svg](https://img.shields.io/badge/Gradle-x-orange.svg)]()
 
-Create a simple and interactive application that allows an easy control and simulation of the college grades.
+The goal was to create a simple and interactive application that allows for easy control and simulation of the college grades.
 This project was built in order to simulate a real world project within the course *GPS* (Gestão de Projecto de Sofware) of _"Engenharia Informática"_ (Computer science) in ISEC (2018/2019).
 
 
 ## Documentation
 
-To acess all related documentation of this project please consult the project dashboard. ([link](https://sites.google.com/view/lei-gps1819-g11))
+To access all the documentation related to this project please consult the project dashboard. ([link](https://sites.google.com/view/lei-gps1819-g11))
 
 For any code related documentarion please visit the project documentation ([link]())
 
