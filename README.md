@@ -13,7 +13,7 @@ This project was built in order to simulate a real world project within the cour
 
 To access all the documentation related to this project please consult the project dashboard. ([link](https://sites.google.com/view/lei-gps1819-g11))
 
-For any code related documentarion please visit the project documentation ([link]())
+For any code related documentarion please visit the project documentation ([link](https://filmaluco.github.io/J-Viste-A-Minha-M-dia-/))
 
 ## Features
  * Bologna Score conversion
@@ -23,7 +23,7 @@ For any code related documentarion please visit the project documentation ([link
 
 ## Changelog
 
-Changelog is available [here](Changelog.md)
+Changelog is available [here](https://github.com/Filmaluco/J-Viste-A-Minha-M-dia-/blob/master/changelog.md)
 
 ## License
 
