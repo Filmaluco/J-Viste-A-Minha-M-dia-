@@ -1,7 +1,10 @@
 package pt.isec.gps1819g11.javisteaminhamedia;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+
+import pt.isec.gps1819g11.javisteaminhamedia.Activities.GradesActivity;
 
 public class MainActivity extends Activity {
 
@@ -9,5 +12,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(this,GradesActivity.class);
+        startActivity(intent);
     }
 }

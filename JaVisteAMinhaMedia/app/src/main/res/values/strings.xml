@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">JaVisteAMinhaMedia</string>
+    <string name="logic">logic</string>
+    <string name="theoretical">theoretical</string>
+    <string name="network">network</string>
+    <string name="group">group</string>
+    <string name="programming">programming</string>
+    <string name="neutral">neutral</string>
+    <string name="title_activity_grades">GradesActivity</string>
+    <string name="TextMediaAtual">A sua media atual: </string>
+    <string name="TextMediaBolonha">A sua média de bolonha: </string>
+    <string name="TextMediaPretendida">Pretende alcançar media de:</string>
+    <string name="InfoMediaBolonha">Para o conseguir fazer deve alcançar as seguintes notas:</string>
+    <string name="primeiroSemestre">1º Semestre</string>
+    <string name="segundoSemestre">2º Semestre</string>
+    <string name="primeiroAno">1º Ano</string>
+    <string name="segundoAno">2º Ano</string>
+    <string name="terceiroAno">3º Ano</string>
 </resources>

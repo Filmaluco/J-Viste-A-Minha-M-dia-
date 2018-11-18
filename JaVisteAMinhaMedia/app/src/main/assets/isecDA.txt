@@ -1,0 +1,31 @@
+Análise Matemática I  	                        6       0       TAG
+Álgebra Linear 	 	  	                        5       0       TAG
+Introdução à Programação 	                    5       0       TAG
+Sistemas Digitais 	 	                        5       0       TAG
+Tecnologias WEB 	 	                        4       0       TAG
+Gestão  	                                    5       0       TAG
+Análise Matemática II 	 	                    6       0       TAG
+Fundamentos de Computação Gráfica 	 	        5       0       TAG
+Sistemas Operativos 	 	                    5       0       TAG
+Programação 	 	                            5       0       TAG
+Tecnologias e Arquitecturas de Computadores 	5       0       TAG
+Electrónica 	 	                            4       0       TAG
+Programação Orientada a Objectos 	 	        5       0       TAG
+Introdução às Redes de Comunicação 	 	        5       0       TAG
+Métodos Estatísticos 	 	            	    5       0       TAG
+Introdução à Inteligência Artificial 	 	    5       0       TAG
+Base de Dados 	 	 	                        5       0       TAG
+Investigação Operacional 	 	 	            5       0       TAG
+Sistemas Operativos II 	 	                    5       0       TAG
+Empreendedorismo e Inovação 	 	            5       0       TAG
+Interacção Pessoa-Máquina 	 	                5       0       TAG
+Programação Avançada 	 	                    5       0       TAG
+Modelação e Design 	 	                        5       0       TAG
+Conhecimento e Raciocínio                       5       0       TAG
+Estruturas de Dados 	 	                    6       0       TAG
+Programação Distribuída 	 	                6       0       TAG
+Arquitecturas Móveis 	 	                    6       0       TAG
+Gestão de Projecto de Sofware 	 	            6       0       TAG
+Programação Web 	 	                        6       0       TAG
+Ética e Deontologia                             3       0       TAG
+Projecto ou Estágio                            27       0       TAG
