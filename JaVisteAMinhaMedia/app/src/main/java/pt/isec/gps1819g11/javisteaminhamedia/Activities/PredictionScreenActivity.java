@@ -5,11 +5,12 @@ import android.os.Bundle;
 
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
-public class InitialScreenActivity extends Activity {
+
+public class PredictionScreenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_initial_screen);
+        setContentView(R.layout.activity_prediction_screen);
     }
 }

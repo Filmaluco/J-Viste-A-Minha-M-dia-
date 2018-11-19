@@ -7,13 +7,13 @@
     <string name="programming">programming</string>
     <string name="neutral">neutral</string>
     <string name="title_activity_grades">GradesActivity</string>
-    <string name="TextMediaAtual">A sua media atual: </string>
-    <string name="TextMediaBolonha">A sua média de bolonha: </string>
-    <string name="TextMediaPretendida">Pretende alcançar media de:</string>
-    <string name="InfoMediaBolonha">Para o conseguir fazer deve alcançar as seguintes notas:</string>
-    <string name="primeiroSemestre">1º Semestre</string>
-    <string name="segundoSemestre">2º Semestre</string>
-    <string name="primeiroAno">1º Ano</string>
-    <string name="segundoAno">2º Ano</string>
-    <string name="terceiroAno">3º Ano</string>
+    <string name="TextCurrentAverage">A sua media atual: </string>
+    <string name="TextBolognaAverage">A sua média de bolonha: </string>
+    <string name="TextPretendedAverage">Pretende alcançar media de:</string>
+    <string name="InfoBolognaAverage">Para o conseguir fazer deve alcançar as seguintes notas:</string>
+    <string name="firstSemester">1º Semestre</string>
+    <string name="secondSemester">2º Semestre</string>
+    <string name="firstYear">1º Ano</string>
+    <string name="secondYear">2º Ano</string>
+    <string name="thirdYear">3º Ano</string>
 </resources>
