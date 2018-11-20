@@ -1,12 +1,13 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
+import java.io.Serializable;
 import java.util.Map;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 
 /**
  * @version 1.0
  */
-public class Student {
+public class Student implements Serializable{
 
     //Variables
     //----------------------------------------------------------------------------------------------
@@ -26,7 +27,8 @@ public class Student {
      * Default Constructor <br>
      * Generates the Student with default values (does not generate the courses, please check the StudentManager for loading student courses effectively)
      */
-    public Student() {
+    public Student()
+    {
         this.intendedAverage = 12F;
         this.average = 0F;
         this.predectionAverage = 0F;

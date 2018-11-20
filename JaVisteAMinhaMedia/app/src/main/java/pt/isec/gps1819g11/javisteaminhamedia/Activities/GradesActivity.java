@@ -1,5 +1,6 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
 
@@ -17,21 +19,24 @@ public class GradesActivity extends Activity {
     ListView lvSem1,lvSem2;
     ArrayAdapter<String> adapter;
 
+    Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras(); //Getting the object serialized
+        Student student = (Student)bundle.getSerializable("student"); //Diserializing the student object
 
-
-        setupListViews();
+        setupListViews(student);
 
 
 
 
     }
 
-    void setupListViews(){
+    void setupListViews(Student student){
         lvSem1 = (ListView) findViewById(R.id.listView1SEM);
         lvSem2 = (ListView) findViewById(R.id.listView2SEM);
 
@@ -67,10 +72,12 @@ public class GradesActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = lvSem1.getItemAtPosition(position);
-                String s = (String)o;
-                Log.i("Teste","->" + s);
+                String gradeName = (String)o;
+                Log.i("Teste","->" + gradeName);
+                int res;
 
-                    updateGradeDlg();
+
+                    updateGradeDlg(gradeName);
 
 
             }
@@ -80,17 +87,18 @@ public class GradesActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = lvSem1.getItemAtPosition(position);
-                String s = (String)o;
-                Log.i("Teste","->" + s);
+                String gradeName = (String)o;
+                Log.i("Teste","->" + gradeName);
 
-                updateGradeDlg();
+                updateGradeDlg(gradeName);
 
 
             }
         });
     }
-    void updateGradeDlg(){ //Dialog para atualizar a nota
-        UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(GradesActivity.this);
+   void updateGradeDlg(String gradeName){ //Dialog to update grade
+        UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(GradesActivity.this, student,gradeName);
         updateGradesDialog.show();
+
     }
 }
