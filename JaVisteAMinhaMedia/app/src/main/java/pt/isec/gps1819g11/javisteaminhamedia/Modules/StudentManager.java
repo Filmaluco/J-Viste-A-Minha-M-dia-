@@ -1,5 +1,10 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Modules;
 
+import android.content.Context;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
@@ -14,8 +19,13 @@ public class StudentManager {
     //Variables
     //----------------------------------------------------------------------------------------------
     //Static Variables
+        // Control variables
+    private static final String TAG = "[StudentManager]";
         // Assets Files
+    private static final String USER_DATA_FILE = "student.txt";
     private static final String ISEC_DA_FILE_NAME = "isecDA.txt";
+    //Private Variables
+    Context context;
 
     //----------------------------------------------------------------------------------------------
     //      CONSTRUCTOR'S
@@ -24,9 +34,23 @@ public class StudentManager {
     /**
      * Is responsible for saving and updating all user related data in the system
      */
-    public StudentManager() {
-        //TODO: check if its the first time running
-            // if it is create files
+    public StudentManager(Context context) {
+        this.context = context;
+        if(fileExist(USER_DATA_FILE)){
+            Log.i(TAG, "Student data found");
+            return;
+        }
+
+        Log.i(TAG, "No data found, creating new Student data");
+        try {
+            context.openFileOutput(USER_DATA_FILE, Context.MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+            Log.i(TAG, "Failed to create student data file");
+        }
+
+        //TODO: initial data
+        //Create from template data
+
     }
 
 
@@ -81,6 +105,11 @@ public class StudentManager {
      */
     private Map<String, Course> loadGrades(Branch branch){
         throw new UnsupportedOperationException("Operation not implemented yet");
+    }
+
+    private boolean fileExist(String fname){
+        File file = context.getFileStreamPath(fname);
+        return file.exists();
     }
 
 
