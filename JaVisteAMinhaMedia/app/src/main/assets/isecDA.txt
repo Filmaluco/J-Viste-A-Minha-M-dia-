@@ -1,31 +1,31 @@
-Análise Matemática I  	                        6       0       TAG
-Álgebra Linear 	 	  	                        5       0       TAG
-Introdução à Programação 	                    5       0       TAG
-Sistemas Digitais 	 	                        5       0       TAG
-Tecnologias WEB 	 	                        4       0       TAG
-Gestão  	                                    5       0       TAG
-Análise Matemática II 	 	                    6       0       TAG
-Fundamentos de Computação Gráfica 	 	        5       0       TAG
-Sistemas Operativos 	 	                    5       0       TAG
-Programação 	 	                            5       0       TAG
-Tecnologias e Arquitecturas de Computadores 	5       0       TAG
-Electrónica 	 	                            4       0       TAG
-Programação Orientada a Objectos 	 	        5       0       TAG
-Introdução às Redes de Comunicação 	 	        5       0       TAG
-Métodos Estatísticos 	 	            	    5       0       TAG
-Introdução à Inteligência Artificial 	 	    5       0       TAG
-Base de Dados 	 	 	                        5       0       TAG
-Investigação Operacional 	 	 	            5       0       TAG
-Sistemas Operativos II 	 	                    5       0       TAG
-Empreendedorismo e Inovação 	 	            5       0       TAG
-Interacção Pessoa-Máquina 	 	                5       0       TAG
-Programação Avançada 	 	                    5       0       TAG
-Modelação e Design 	 	                        5       0       TAG
-Conhecimento e Raciocínio                       5       0       TAG
-Estruturas de Dados 	 	                    6       0       TAG
-Programação Distribuída 	 	                6       0       TAG
-Arquitecturas Móveis 	 	                    6       0       TAG
-Gestão de Projecto de Sofware 	 	            6       0       TAG
-Programação Web 	 	                        6       0       TAG
-Ética e Deontologia                             3       0       TAG
-Projecto ou Estágio                            27       0       TAG
+ 6 0 Logic Análise Matemática I
+ 5 0 Logic Álgebra Linear
+ 5 0 Programing Introdução à Programação
+ 5 0 Logic Sistemas Digitais
+ 4 0 Theory Tecnologias WEB
+ 5 0 Group Gestão
+ 6 0 Logic Análise Matemática II
+ 5 0 Neutral Fundamentos de Computação Gráfica
+ 5 0 Programing Sistemas Operativos
+ 5 0 Programing Programação
+ 5 0 Theory Tecnologias e Arquitecturas de Computadores
+ 4 0 Logic Electrónica
+ 5 0 Programing Programação Orientada a Objectos
+ 5 0 Networking Introdução às Redes de Comunicação
+ 5 0 Logic Métodos Estatísticos
+ 5 0 Programing Introdução à Inteligência Artificial
+ 5 0 Logic Base de Dados
+ 5 0 Neutral Investigação Operacional
+ 5 0 Programing Sistemas Operativos II
+ 5 0 Group Empreendedorismo e Inovação
+ 5 0 Theory Interacção Pessoa-Máquina
+ 5 0 Programing Programação Avançada
+ 5 0 Theory Modelação e Design
+ 5 0 Logic Conhecimento e Raciocínio
+ 6 0 Theory Estruturas de Dados
+ 6 0 Programing Programação Distribuída
+ 6 0 Programing Arquitecturas Móveis
+ 6 0 Group Gestão de Projecto de Sofware
+ 6 0 Programing Programação Web
+ 3 0 Group Ética e Deontologia
+27 0 Programing Projecto ou Estágio
