@@ -23,7 +23,7 @@ import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 
 /**
- * @version 1.0
+ * @version 2.0
  */
 public class StudentManager {
 
