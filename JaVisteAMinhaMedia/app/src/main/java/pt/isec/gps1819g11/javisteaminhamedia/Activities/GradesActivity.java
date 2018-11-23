@@ -30,10 +30,6 @@ public class GradesActivity extends Activity {
         Student student = (Student)bundle.getSerializable("student"); //Diserializing the student object
 
         setupListViews(student);
-
-
-
-
     }
 
     void setupListViews(Student student){
