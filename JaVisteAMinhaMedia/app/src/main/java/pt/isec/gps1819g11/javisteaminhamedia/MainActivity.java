@@ -16,6 +16,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         StudentManager studentManager = new StudentManager(this);
+        Student student = studentManager.loadStudent();
+
 
         Intent intent = new Intent(this,GradesActivity.class);
         startActivity(intent);
