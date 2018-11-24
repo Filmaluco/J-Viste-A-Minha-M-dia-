@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
 
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.GradesFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.PredictionFragment;
@@ -25,20 +29,21 @@ public class MainActivity extends AppCompatActivity {
 
     public StudentManager studentManager;
     public Student student;
+    public Toolbar tbar;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         studentManager = new StudentManager();
-       // student = studentManager.loadStudent();
+       //student = studentManager.loadStudent();
         Student student = new Student();
 
-        //Intent intent = new Intent(this,MainActivity.class);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("student",student); //Bundle has student serialized
-        //intent.putExtras(bundle); //Intent wraps bundle
+
+
 
         setupComponents();
 
@@ -79,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragment(Fragment fragment) {
+        FragmentManager fManager= getSupportFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("student",student); //Bundle has student serialized
+        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();

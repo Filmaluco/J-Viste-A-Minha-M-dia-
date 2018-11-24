@@ -50,9 +50,10 @@ public class UpdateGradesDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnCancel:
-                activity.finish();
+            case R.id.btnCancel:{
+                    activity.finish();
                 break;
+            }
             case R.id.btnUpdate:
                 //TODO: Update grade
                 String value = String.valueOf(inputGrade.getText());

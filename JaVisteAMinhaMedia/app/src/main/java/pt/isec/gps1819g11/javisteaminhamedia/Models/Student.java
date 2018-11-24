@@ -175,7 +175,18 @@ public class Student implements Serializable{
      * @return float value of the calculated average
      */
     private float calculateAverage(){
-        throw new UnsupportedOperationException("Operation not implemented yet");
+        average = 0;
+        int nGrades = 0;
+        for(Course c : courses.values()){
+            if(c.getGrade() > 9.5)
+            {
+                average += (c.getGrade()*c.getEcts());
+                nGrades++;
+            }
+
+        }
+
+        return average/=nGrades;
     }
 
     /**

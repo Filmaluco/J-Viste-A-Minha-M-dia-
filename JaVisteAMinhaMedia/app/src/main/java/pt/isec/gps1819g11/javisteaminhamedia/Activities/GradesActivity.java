@@ -33,7 +33,7 @@ public class GradesActivity extends Activity {
     }
 
     void setupListViews(Student student){
-        lvSem1 = (ListView) findViewById(R.id.listView1SEM);
+      /*  lvSem1 = (ListView) findViewById(R.id.listView1SEM);
         lvSem2 = (ListView) findViewById(R.id.listView2SEM);
 
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1); //
@@ -42,7 +42,7 @@ public class GradesActivity extends Activity {
 
         /*Listas para efeitos de teste*/
         //{
-            ArrayList<String> cursos = new ArrayList<>();
+       /*     ArrayList<String> cursos = new ArrayList<>();
             cursos.add("AM1");
             cursos.add("SD");
             cursos.add("AL");
@@ -70,10 +70,7 @@ public class GradesActivity extends Activity {
                 Object o = lvSem1.getItemAtPosition(position);
                 String gradeName = (String)o;
                 Log.i("Teste","->" + gradeName);
-                int res;
-
-
-                    updateGradeDlg(gradeName);
+                updateGradeDlg(gradeName);
 
 
             }
@@ -85,16 +82,11 @@ public class GradesActivity extends Activity {
                 Object o = lvSem1.getItemAtPosition(position);
                 String gradeName = (String)o;
                 Log.i("Teste","->" + gradeName);
-
                 updateGradeDlg(gradeName);
 
 
             }
-        });
+        });*/
     }
-   void updateGradeDlg(String gradeName){ //Dialog to update grade
-        UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(GradesActivity.this, student,gradeName);
-        updateGradesDialog.show();
 
-    }
 }

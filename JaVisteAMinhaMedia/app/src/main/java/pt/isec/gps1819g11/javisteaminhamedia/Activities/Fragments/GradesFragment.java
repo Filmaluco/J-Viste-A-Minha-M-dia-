@@ -6,10 +6,12 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
 /**
@@ -20,7 +22,7 @@ public class GradesFragment extends Fragment {
     private TabLayout tabLayout;
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
-
+    public Student student;
     public GradesFragment() {
         // Required empty public constructor
     }
@@ -33,12 +35,15 @@ public class GradesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+        Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_grades, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         setupViewPager(viewPager);
         tabLayout = (TabLayout) view.findViewById(R.id.year_tabs);
         tabLayout.setupWithViewPager(viewPager);
+        Bundle bundle = getArguments();
+        student = (Student) bundle.getSerializable("student");
+        
         return view;
     }
 
