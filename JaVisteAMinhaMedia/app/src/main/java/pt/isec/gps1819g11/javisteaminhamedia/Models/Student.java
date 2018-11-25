@@ -199,9 +199,20 @@ public class Student implements Serializable {
      * @return float value of the predicted grade
      */
     private float calculatePrediction(Course c){
-        Prediction prediction();
+        float prediction = 0F;
+        int newECTS = completedECTs + c.getEcts();
+        float scoreLeft = intendedAverage - average;
+        float newAverage = average /*+ (scoreLeft/ "numero de cadeiras que faltam fazer")*/;
 
-        return prediction.getPrediction(this, c);
+        prediction = newAverage * newECTS;
+
+        for(Course completed : courses.values())
+            prediction -= (completed.getGrade() * completed.getEcts());
+
+        prediction /= c.getEcts();
+
+
+        return prediction;
     }
 
     /**
