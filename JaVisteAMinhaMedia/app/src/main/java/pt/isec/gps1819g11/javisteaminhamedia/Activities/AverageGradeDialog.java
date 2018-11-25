@@ -1,36 +1,28 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
-import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
+public class AverageGradeDialog extends DialogFragment implements View.OnClickListener {
 
-public class UpdateGradesDialog extends DialogFragment implements View.OnClickListener {
-
-    //TODO: expand for Prediction (Constructor sets hint and title text)
     public Dialog dialog;
     private Button cancel, update;
     public EditText inputGrade;
-    String gradeName;
+    TextView title;
     MainActivity mainActivity;
 
-    public UpdateGradesDialog(){}
+    public AverageGradeDialog(){}
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +30,8 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
         cancel = (Button) v.findViewById(R.id.btnCancel);
         update = (Button) v.findViewById(R.id.btnUpdate);
         inputGrade = (EditText) v.findViewById(R.id.grade);
+        title = (TextView) v.findViewById(R.id.title);
+        title.setText("Media Pretendida");
         mainActivity = (MainActivity) getActivity();
         cancel.setOnClickListener(this);
         update.setOnClickListener(this);
@@ -55,17 +49,16 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.btnCancel:{
-                    dismiss();
+                dismiss();
                 break;
             }
             case R.id.btnUpdate:
 
                 String value = String.valueOf(inputGrade.getText());
                 if(!value.isEmpty()){
-                   float grade = Integer.parseInt(value);
+                    float grade = Integer.parseInt(value);
                     if(grade <= 20 && grade > 9.5 ){
-                        //TODO: Update grade
-                        //mainActivity.student.setGrade();
+                        //TODO: Update average grade
                         dismiss();
                     }else{
                         inputGrade.setText("");

@@ -18,7 +18,15 @@
     <string name="thirdYear">3º Ano</string>
     <string name="nav_grades">Notas</string>
     <string name="nav_prediction">Previsão</string>
+    <string name="tb_branch">Ramo</string>
+    <string name="tb_pretended_average">Media Pretendida</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="branch_selection">Escolha do Ramo</string>
+    <string name="da">Desenvolvimento de Aplicalções</string>
+    <string name="si">Sistemas de Informação</string>
+    <string name="rd">Redes e Administração de Sistemas</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Atualizar</string>
 </resources>

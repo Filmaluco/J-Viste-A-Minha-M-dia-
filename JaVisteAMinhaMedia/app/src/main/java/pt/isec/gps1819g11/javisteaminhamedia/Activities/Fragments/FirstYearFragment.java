@@ -1,9 +1,9 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import pt.isec.gps1819g11.javisteaminhamedia.Activities.GradesActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.UpdateGradesDialog;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
@@ -24,10 +23,12 @@ import pt.isec.gps1819g11.javisteaminhamedia.R;
  * A simple {@link Fragment} subclass.
  */
 public class FirstYearFragment extends Fragment {
+    public MainActivity mainActivity;
     ListView lvSem1,lvSem2;
     ArrayAdapter<String> adapter;
     Student student;
     View view;
+
     public FirstYearFragment() {
         // Required empty public constructor
     }
@@ -37,14 +38,12 @@ public class FirstYearFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-
-
-       view = inflater.inflate(R.layout.fragment_first_year, container, false);
+        view = inflater.inflate(R.layout.fragment_first_year, container, false);
         setupListViews();
+
+        mainActivity = (MainActivity)getActivity();
+        student = mainActivity.student;
         return view;
-
-
     }
     void setupListViews(){
 
@@ -73,7 +72,6 @@ public class FirstYearFragment extends Fragment {
         cursos2.add("TAC");
         cursos2.add("FCG");
 
-
         adapter.addAll(cursos);
         lvSem1.setAdapter(adapter);
         adapter.clear();
@@ -86,10 +84,11 @@ public class FirstYearFragment extends Fragment {
                 Object o = lvSem1.getItemAtPosition(position);
                 String gradeName = (String)o;
                 Log.i("Teste","->" + gradeName);
-                Log.i("Teste","Missing implemenation of dialogbox");
-               // updateGradeDlg(gradeName);
 
 
+                FragmentManager fm = getFragmentManager();
+                UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog();
+                updateGradesDialog.show(fm, "Update Grade");
             }
         });
 
@@ -100,7 +99,10 @@ public class FirstYearFragment extends Fragment {
                 String gradeName = (String)o;
                 Log.i("Teste","->" + gradeName);
                 Log.i("Teste","Missing implemenation of dialogbox");
-               // updateGradeDlg(gradeName);
+
+                FragmentManager fm = getFragmentManager();
+                UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog();
+                updateGradesDialog.show(fm, "Update Grade");
 
 
             }

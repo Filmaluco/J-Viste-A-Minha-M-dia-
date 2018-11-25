@@ -10,10 +10,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 
+import pt.isec.gps1819g11.javisteaminhamedia.Activities.AverageGradeDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.Activities.BranchSelectionDialog;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.GradesFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.PredictionFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public StudentManager studentManager;
     public Student student;
-    public Toolbar tbar;
+    public Toolbar toolbar;
 
 
     @Override
@@ -41,25 +45,30 @@ public class MainActivity extends AppCompatActivity {
        //student = studentManager.loadStudent();
         Student student = new Student();
 
-
-
-
-
         setupComponents();
 
         setupListeners();
     }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_items,menu);
+        return true;
+    }
 
     private void setupComponents() {
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         gradesFragment = new GradesFragment();
         predictionFragment = new PredictionFragment();
 
-        setFragment(gradesFragment);
-
         mainFrame = (FrameLayout) findViewById(R.id.main_frame);
         bottomNavbar = (BottomNavigationView) findViewById(R.id.main_navbar);
+
+        bottomNavbar.setSelectedItemId(R.id.navbar_prediction);
+        setFragment(predictionFragment);
     }
 
     private void setupListeners() {
@@ -91,5 +100,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    public void SetStudentBranch(MenuItem item) {
+        BranchSelectionDialog branchSelection = new BranchSelectionDialog();
+        branchSelection.show(getSupportFragmentManager(), null);
+    }
+
+    public void SetPretendedAverage(MenuItem item) {
+        AverageGradeDialog averageGrade = new AverageGradeDialog();
+        averageGrade.show(getSupportFragmentManager(), null);
     }
 }

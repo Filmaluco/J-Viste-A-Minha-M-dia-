@@ -1,43 +1,34 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
-import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
-
-public class UpdateGradesDialog extends DialogFragment implements View.OnClickListener {
-
-    //TODO: expand for Prediction (Constructor sets hint and title text)
+public class BranchSelectionDialog extends DialogFragment implements View.OnClickListener {
     public Dialog dialog;
     private Button cancel, update;
-    public EditText inputGrade;
-    String gradeName;
-    MainActivity mainActivity;
+    private RadioGroup branchSelection;
+    private RadioButton branchSelected;
+    private MainActivity mainActivity;
 
-    public UpdateGradesDialog(){}
+    public BranchSelectionDialog(){}
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.update_grade_dialog, container);
+        View v = inflater.inflate(R.layout.branch_selection_dialog, container);
         cancel = (Button) v.findViewById(R.id.btnCancel);
         update = (Button) v.findViewById(R.id.btnUpdate);
-        inputGrade = (EditText) v.findViewById(R.id.grade);
+        branchSelection = (RadioGroup) v.findViewById(R.id.rg_branch_selection);
         mainActivity = (MainActivity) getActivity();
         cancel.setOnClickListener(this);
         update.setOnClickListener(this);
@@ -55,23 +46,28 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.btnCancel:{
-                    dismiss();
+                dismiss();
                 break;
             }
             case R.id.btnUpdate:
+                int selectedBranchOption = branchSelection.getCheckedRadioButtonId();
 
-                String value = String.valueOf(inputGrade.getText());
-                if(!value.isEmpty()){
-                   float grade = Integer.parseInt(value);
-                    if(grade <= 20 && grade > 9.5 ){
-                        //TODO: Update grade
-                        //mainActivity.student.setGrade();
-                        dismiss();
-                    }else{
-                        inputGrade.setText("");
-                        inputGrade.setHint("Nota inserida inválida");
-                    }
+                switch (selectedBranchOption){
+                    case R.id.rb_da:
+                        //TODO: Set Branch DA
+                        //mainActivity.student.setBranch();
+                        break;
+                    case R.id.rb_si:
+                        //TODO: Set Branch SI
+                        //mainActivity.student.setBranch();
+                        break;
+
+                    case R.id.rb_rd:
+                        //TODO: Set Branch SI
+                        //mainActivity.student.setBranch();
+                        break;
                 }
+                dismiss();
                 break;
             default:
                 break;

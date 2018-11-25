@@ -23,6 +23,7 @@ public class GradesFragment extends Fragment {
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
     public Student student;
+
     public GradesFragment() {
         // Required empty public constructor
     }
@@ -43,7 +44,6 @@ public class GradesFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         Bundle bundle = getArguments();
         student = (Student) bundle.getSerializable("student");
-        
         return view;
     }
 
