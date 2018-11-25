@@ -3,6 +3,7 @@ package pt.isec.gps1819g11.javisteaminhamedia.Models;
 import java.io.Serializable;
 import java.util.Map;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.Prediction;
 
 /**
  * @version 1.0
@@ -107,7 +108,7 @@ public class Student implements Serializable {
      *
      * @return number of ects the student as completed
      */
-    private int getCompletedECTs() {
+    public int getCompletedECTs() {
         return completedECTs;
     }
 
@@ -126,6 +127,8 @@ public class Student implements Serializable {
     public Map<String, Course> getCourses(){
         return courses;
     }
+
+
 
     //----------------------------------------------------------------------------------------------
     //      SETTERS
@@ -199,7 +202,7 @@ public class Student implements Serializable {
      * @return float value of the predicted grade
      */
     private float calculatePrediction(Course c){
-        Prediction prediction();
+        Prediction prediction = new Prediction();
 
         return prediction.getPrediction(this, c);
     }

@@ -1,5 +1,6 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Modules;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 
 /**
@@ -10,7 +11,7 @@ import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 public class Prediction {
 
     public float getPrediction(Student s, Course c){
-        int countLeft;
+        int countLeft = 0;
         float prediction = 0F;
         int newECTS = s.getCompletedECTs() + c.getEcts();
         float scoreLeft = s.getIntendedAverage() - s.getAverage();
