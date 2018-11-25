@@ -7,6 +7,7 @@ import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 /**
  * @version 1.0
  */
+
 public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +29,8 @@ public class Student implements Serializable {
      * Default Constructor <br>
      * Generates the Student with default values (does not generate the courses, please check the StudentManager for loading student courses effectively)
      */
-    public Student() {
+    public Student()
+    {
         this.intendedAverage = 12F;
         this.average = 0F;
         this.predectionAverage = 0F;
@@ -121,7 +123,7 @@ public class Student implements Serializable {
      *
      * @return the hashMap of the courses this student attends
      */
-    private Map<String, Course> getCourses(){
+    public Map<String, Course> getCourses(){
         return courses;
     }
 
@@ -178,15 +180,39 @@ public class Student implements Serializable {
      * @return float value of the calculated average
      */
     private float calculateAverage(){
-        throw new UnsupportedOperationException("Operation not implemented yet");
+        average = 0;
+        int nGrades = 0;
+        for(Course c : courses.values()){
+            if(c.getGrade() > 9.5)
+            {
+                average += (c.getGrade()*c.getEcts());
+                nGrades++;
+            }
+
+        }
+
+        return average/=nGrades;
     }
 
     /**
-     *
-     * @return float value of the predicted average
+     * @param c is the course which will have its grade predicted
+     * @return float value of the predicted grade
      */
-    private float calculatePrediction(){
-        throw new UnsupportedOperationException("Operation not implemented yet");
+    private float calculatePrediction(Course c){
+        float prediction = 0F;
+        int newECTS = completedECTs + c.getEcts();
+        float scoreLeft = intendedAverage - average;
+        float newAverage = average /*+ (scoreLeft/ "numero de cadeiras que faltam fazer")*/;
+
+        prediction = newAverage * newECTS;
+
+        for(Course completed : courses.values())
+            prediction -= (completed.getGrade() * completed.getEcts());
+
+        prediction /= c.getEcts();
+
+
+        return prediction;
     }
 
     /**

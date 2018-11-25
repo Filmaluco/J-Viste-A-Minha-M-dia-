@@ -63,8 +63,8 @@ public class Course implements Serializable {
      *
      * @return tag name
      */
-    public String getTag() {
-        return tag.name();
+    public Tag getTag() {
+        return tag;
     }
 
     /**
