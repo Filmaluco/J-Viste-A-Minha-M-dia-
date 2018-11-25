@@ -7,7 +7,9 @@ import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 /**
  * @version 1.0
  */
-public class Student implements Serializable{
+
+public class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     //Variables
     //----------------------------------------------------------------------------------------------
@@ -130,12 +132,15 @@ public class Student implements Serializable{
     //----------------------------------------------------------------------------------------------
 
     /**
-     *
+     * Sets the student branch, in order to load the courses check the StudentManager documentation
+     * //TODO:: add sample code?
+     * @see pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager
      * @param branch defines user current branch
      * @param courses hashMap already built with the grades
      */
     public void setBranch(Branch branch, Map<String, Course> courses) {
         this.branch = branch;
+        this.courses = courses;
     }
 
     /**

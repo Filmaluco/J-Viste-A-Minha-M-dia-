@@ -1,11 +1,14 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
+import java.io.Serializable;
+
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Tag;
 
 /**
  * @version 1.0
  */
-public class Course {
+public class Course implements Serializable {
+    private static final long serialVersionUID = 1L;
     //Variables
     //----------------------------------------------------------------------------------------------
     //Private Variables
