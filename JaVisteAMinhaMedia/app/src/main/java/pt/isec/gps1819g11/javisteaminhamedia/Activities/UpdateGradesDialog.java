@@ -1,5 +1,6 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
 
+@SuppressLint("ValidFragment")
 public class UpdateGradesDialog extends DialogFragment implements View.OnClickListener {
 
     //TODO: expand for Prediction (Constructor sets hint and title text)
@@ -29,8 +31,14 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
     public EditText inputGrade;
     String gradeName;
     MainActivity mainActivity;
+    Student student;
 
-    public UpdateGradesDialog(){}
+
+    @SuppressLint("ValidFragment")
+    public UpdateGradesDialog(Student s, String gradeName){
+        student = s;
+        this.gradeName = gradeName;
+    }
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -65,8 +73,16 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                    float grade = Integer.parseInt(value);
                     if(grade <= 20 && grade > 9.5 ){
                         //TODO: Update grade
-                        //mainActivity.student.setGrade();
-                        dismiss();
+                        try {
+                            student.setGrade(gradeName, grade);
+                            dismiss();
+                        }catch(Exception e){
+                            Log.i("Excecção","UpgradeDLG exceção: "+e.toString());
+
+                        }
+                        finally{ // finally with the objetive for testing, for not stop the app in the dialog
+                            dismiss();
+                        }
                     }else{
                         inputGrade.setText("");
                         inputGrade.setHint("Nota inserida inválida");

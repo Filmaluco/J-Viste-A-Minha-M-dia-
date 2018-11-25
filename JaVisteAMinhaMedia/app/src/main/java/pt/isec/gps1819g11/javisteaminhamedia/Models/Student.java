@@ -121,7 +121,7 @@ public class Student implements Serializable{
      *
      * @return the hashMap of the courses this student attends
      */
-    private Map<String, Course> getCourses(){
+    public Map<String, Course> getCourses(){
         return courses;
     }
 

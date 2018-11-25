@@ -60,8 +60,8 @@ public class Course {
      *
      * @return tag name
      */
-    public String getTag() {
-        return tag.name();
+    public Tag getTag() {
+        return tag;
     }
 
     /**

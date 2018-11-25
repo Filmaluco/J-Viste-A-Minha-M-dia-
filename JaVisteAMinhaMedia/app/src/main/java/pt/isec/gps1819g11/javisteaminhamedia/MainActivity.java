@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void SetPretendedAverage(MenuItem item) {
-        AverageGradeDialog averageGrade = new AverageGradeDialog();
+        AverageGradeDialog averageGrade = new AverageGradeDialog(student);
         averageGrade.show(getSupportFragmentManager(), null);
     }
 }

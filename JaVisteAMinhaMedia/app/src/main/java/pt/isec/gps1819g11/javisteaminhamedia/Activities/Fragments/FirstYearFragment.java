@@ -1,6 +1,7 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,9 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Activities.CourseAdapter;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.UpdateGradesDialog;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
+import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
@@ -25,10 +30,10 @@ import pt.isec.gps1819g11.javisteaminhamedia.R;
 public class FirstYearFragment extends Fragment {
     public MainActivity mainActivity;
     ListView lvSem1,lvSem2;
-    ArrayAdapter<String> adapter;
+    ArrayList<Course> dataModels;
     Student student;
     View view;
-
+    public static CourseAdapter adapter;
     public FirstYearFragment() {
         // Required empty public constructor
     }
@@ -46,38 +51,27 @@ public class FirstYearFragment extends Fragment {
         return view;
     }
     void setupListViews(){
-
-        lvSem1 = (ListView) view.findViewById(R.id.listView1SEM);
-       lvSem2 = (ListView ) view.findViewById(R.id.listView2SEM);
-
-        adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1); //
+        try {
 
 
+            lvSem1 = (ListView) view.findViewById(R.id.listView1SEM);
+            lvSem2 = (ListView) view.findViewById(R.id.listView2SEM);
 
-        /*Listas para efeitos de teste*/
-        //{
-        ArrayList<String> cursos = new ArrayList<>();
-        cursos.add("AM1");
-        cursos.add("SD");
-        cursos.add("AL");
-        cursos.add("IP");
-        cursos.add("TWEB");
-        cursos.add("GESTAO");
+            dataModels = new ArrayList<>();
+            Map<String, Course> m = student.getCourses();
+            for (Course c : m.values()) {
+                dataModels.add(new Course(c.getName(), c.getTag(), c.getEcts(), c.getGrade()));
 
-        ArrayList<String> cursos2 = new ArrayList<>();
-        cursos2.add("AM2");
-        cursos2.add("P");
-        cursos2.add("E");
-        cursos2.add("ME");
-        cursos2.add("TAC");
-        cursos2.add("FCG");
+            }
 
-        adapter.addAll(cursos);
-        lvSem1.setAdapter(adapter);
-        adapter.clear();
-        adapter.addAll(cursos2);
-        lvSem2.setAdapter(adapter);
-        //}
+            adapter = new CourseAdapter(dataModels, getContext());
+            lvSem1.setAdapter(adapter);
+
+        }catch (Exception e){
+            Log.i("Exceção","setupListViews exceção " + e);
+        }
+      
+
         lvSem1.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Ao clicar nos items da primeira listview
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -87,7 +81,7 @@ public class FirstYearFragment extends Fragment {
 
 
                 FragmentManager fm = getFragmentManager();
-                UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog();
+                UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(student,gradeName);
                 updateGradesDialog.show(fm, "Update Grade");
             }
         });
@@ -101,16 +95,15 @@ public class FirstYearFragment extends Fragment {
                 Log.i("Teste","Missing implemenation of dialogbox");
 
                 FragmentManager fm = getFragmentManager();
-                UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog();
+                UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(student,gradeName);
                 updateGradesDialog.show(fm, "Update Grade");
 
 
             }
         });
     }
-   /* void updateGradeDlg(String gradeName){ //Dialog to update grade
-        UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(MainActivity.this, student,"gradeName);
-        updateGradesDialog.show();
 
-    }*/
+
+
+
 }

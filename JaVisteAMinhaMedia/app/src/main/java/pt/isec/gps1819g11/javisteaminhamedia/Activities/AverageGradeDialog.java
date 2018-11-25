@@ -1,9 +1,11 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
+import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
+@SuppressLint("ValidFragment")
 public class AverageGradeDialog extends DialogFragment implements View.OnClickListener {
 
     public Dialog dialog;
@@ -21,8 +25,12 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
     public EditText inputGrade;
     TextView title;
     MainActivity mainActivity;
+    Student student;
 
-    public AverageGradeDialog(){}
+    @SuppressLint("ValidFragment")
+    public AverageGradeDialog(Student student){
+        this.student = student;
+    }
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,10 +64,18 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
 
                 String value = String.valueOf(inputGrade.getText());
                 if(!value.isEmpty()){
-                    float grade = Integer.parseInt(value);
-                    if(grade <= 20 && grade > 9.5 ){
+                    float intendedAverage = Integer.parseInt(value);
+                    if(intendedAverage <= 20 && intendedAverage > 9.5 ){
                         //TODO: Update average grade
+                        try{
+                        student.setIntendedAverage(intendedAverage);
                         dismiss();
+                        }catch(Exception e){
+                            Log.i("Excecção","IntendedAverageDLG exceção: "+e.toString());
+                        }
+                        finally{ // finally with the objetive for testing, for not stop the app in the dialog
+                            dismiss();
+                        }
                     }else{
                         inputGrade.setText("");
                         inputGrade.setHint("Nota inserida inválida");
