@@ -180,7 +180,7 @@ public class Student implements Serializable {
     // Public Methods ------------------------------------------------------------------------------
 
     /**
-     * 
+     *
      * @param year is the year the courses wanted
      * @param semester is the semester of the courses wanted
      * @return an arrayList of courses with the specified year and semester
