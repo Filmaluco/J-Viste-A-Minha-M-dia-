@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
 @SuppressLint("ValidFragment")
@@ -26,6 +27,7 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
     TextView title;
     MainActivity mainActivity;
     Student student;
+    StudentManager studentManager;
 
     @SuppressLint("ValidFragment")
     public AverageGradeDialog(Student student){
@@ -41,6 +43,8 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
         title = (TextView) v.findViewById(R.id.title);
         title.setText("Media Pretendida");
         mainActivity = (MainActivity) getActivity();
+        student = mainActivity.student;
+        studentManager = mainActivity.studentManager;
         cancel.setOnClickListener(this);
         update.setOnClickListener(this);
         return v;
@@ -69,6 +73,8 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
                         //TODO: Update average grade
                         try{
                         student.setIntendedAverage(intendedAverage);
+                        studentManager.savesStudent(student);
+
                         dismiss();
                         }catch(Exception e){
                             Log.i("Excecção","IntendedAverageDLG exceção: "+e.toString());
