@@ -65,13 +65,13 @@ public class BranchSelectionDialog extends DialogFragment implements View.OnClic
                         mainActivity.studentManager.updateStudentBranch(mainActivity.student, Branch.RAS);
                         break;
                 }
+                mainActivity.recreate();
+                mainActivity.bottomNavbar.setSelectedItemId(R.id.navbar_prediction);
                 dismiss();
                 break;
             default:
                 break;
         }
 
-        mainActivity.recreate();
-        mainActivity.bottomNavbar.setSelectedItemId(R.id.navbar_prediction);
     }
 }
