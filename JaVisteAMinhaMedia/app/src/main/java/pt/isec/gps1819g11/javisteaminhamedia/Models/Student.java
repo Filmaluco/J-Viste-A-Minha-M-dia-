@@ -1,8 +1,10 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.Prediction;
 
 /**
  * @version 1.0
@@ -105,7 +107,7 @@ public class Student implements Serializable{
      *
      * @return number of ects the student as completed
      */
-    private int getCompletedECTs() {
+    public int getCompletedECTs() {
         return completedECTs;
     }
 
@@ -121,7 +123,7 @@ public class Student implements Serializable{
      *
      * @return the hashMap of the courses this student attends
      */
-    private Map<String, Course> getCourses(){
+    public Map<String, Course> getCourses(){
         return courses;
     }
 
@@ -190,13 +192,13 @@ public class Student implements Serializable{
     }
 
     /**
-     * @param c is the course which will have its grade predicted
+     *
      * @return float value of the predicted grade
      */
-    private float calculatePrediction(Course c){
-        Prediction prediction();
+    private ArrayList<Course> calculatePrediction(){
+        Prediction prediction = new Prediction(this);
 
-        return prediction.getPrediction(this, c);
+        return prediction.getPrediction();
     }
 
     /**
