@@ -40,7 +40,6 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
     public UpdateGradesDialog(Student s, String gradeName){
         student = s;
         this.gradeName = gradeName;
-
     }
 
 
@@ -64,7 +63,6 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.btnCancel:{
                     dismiss();
@@ -90,7 +88,8 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
 
                     }else{
                         inputGrade.setText("");
-                        inputGrade.setHint("Nota inserida inválida");
+                        inputGrade.setHintTextColor(getResources().getColor(R.color.colorPrimary));
+                        inputGrade.setHint(R.string.invalid_inserted_grade);
                     }
                 }
                 break;

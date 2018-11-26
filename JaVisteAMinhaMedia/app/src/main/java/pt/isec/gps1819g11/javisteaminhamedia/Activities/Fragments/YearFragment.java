@@ -1,6 +1,7 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,9 +32,16 @@ public class YearFragment extends Fragment {
     ArrayList<Course> dataModels;
     Student student;
     View view;
+    int year;
     public static CourseAdapter adapter;
-    public YearFragment() {
-        // Required empty public constructor
+
+    public YearFragment(){
+        //Required empty constructor
+    }
+
+    @SuppressLint("ValidFragment")
+    public YearFragment(int year) {
+        this.year = year;
     }
 
 
@@ -51,26 +59,26 @@ public class YearFragment extends Fragment {
     }
     void setupListViews(){
         try {
-
-
             lvSem1 = (ListView) view.findViewById(R.id.listView1SEM);
             lvSem2 = (ListView) view.findViewById(R.id.listView2SEM);
 
             dataModels = new ArrayList<>();
-            Map<String, Course> m = student.getCourses();
-            for (Course c : m.values()) {
-                dataModels.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), c.getGrade(),c.getAno(),c.getSemestre()));
-
-
-            }
+            dataModels = student.getList(year, 1);
 
             adapter = new CourseAdapter(dataModels, getContext());
+            adapter.setLayout(R.layout.listview_grades_row_item);
+
             lvSem1.setAdapter(adapter);
 
+            dataModels = student.getList(year, 2);
+
+            adapter = new CourseAdapter(dataModels, getContext());
+            adapter.setLayout(R.layout.listview_grades_row_item);
+
+            lvSem2.setAdapter(adapter);
         }catch (Exception e){
             Log.i("Exceção","setupListViews exceção " + e);
         }
-      
 
         lvSem1.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Ao clicar nos items da primeira listview
             @Override
@@ -79,7 +87,6 @@ public class YearFragment extends Fragment {
                 Course c = (Course)o;
                 String gradeName = c.getName();
                 Log.i("Teste","->" + gradeName);
-
 
                 FragmentManager fm = getFragmentManager();
                 UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(student,gradeName);
@@ -90,16 +97,14 @@ public class YearFragment extends Fragment {
         lvSem2.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Ao clicar nos items da primeira listview
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = lvSem1.getItemAtPosition(position);
-                String gradeName = (String)o;
+                Object o = lvSem2.getItemAtPosition(position);
+                Course c = (Course)o;
+                String gradeName = c.getName();
                 Log.i("Teste","->" + gradeName);
-                Log.i("Teste","Missing implemenation of dialogbox");
 
                 FragmentManager fm = getFragmentManager();
                 UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(student,gradeName);
                 updateGradesDialog.show(fm, "Update Grade");
-
-
             }
         });
     }
