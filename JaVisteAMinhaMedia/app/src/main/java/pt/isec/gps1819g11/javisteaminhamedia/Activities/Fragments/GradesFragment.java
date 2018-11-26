@@ -42,8 +42,6 @@ public class GradesFragment extends Fragment {
         setupViewPager(viewPager);
         tabLayout = (TabLayout) view.findViewById(R.id.year_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        Bundle bundle = getArguments();
-        student = (Student) bundle.getSerializable("student");
         return view;
     }
 
