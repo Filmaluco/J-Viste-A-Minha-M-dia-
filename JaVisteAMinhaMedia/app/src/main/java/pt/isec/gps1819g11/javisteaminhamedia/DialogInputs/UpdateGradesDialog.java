@@ -90,7 +90,7 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                         }
                     }else{
                         inputGrade.setText("");
-                        inputGrade.setHint("Nota inserida inválida");
+                        inputGrade.setHint(R.string.invalid_inserted_grade);
                     }
                 }
                 break;
