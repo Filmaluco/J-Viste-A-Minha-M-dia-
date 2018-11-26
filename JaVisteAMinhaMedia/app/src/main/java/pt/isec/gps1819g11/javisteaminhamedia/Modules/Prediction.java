@@ -71,7 +71,6 @@ public class Prediction {
         int countTag3 = 0;
         int countTag4 = 0;
         int countTag5 = 0;
-        int countTag6 = 0;
 
         for (Course c: this.getStudent().getCourses().values()) {
             if (c.getGrade() >= 9.5){
@@ -92,7 +91,6 @@ public class Prediction {
                         countTag5++;
                         break;
                     case "Neutral":
-                        countTag6++;
                         break;
                 }
             }
@@ -100,7 +98,7 @@ public class Prediction {
                 coursesLeft++;
         }
 
-        if(countTag1 > 0 && countTag2 > 0 && countTag3 > 0 && countTag4 > 0 && countTag5 > 0 && countTag6 > 0)
+        if(countTag1 > 0 && countTag2 > 0 && countTag3 > 0 && countTag4 > 0 && countTag5 > 0)
             return true;
         else
             return false;
