@@ -2,6 +2,7 @@ package pt.isec.gps1819g11.javisteaminhamedia.Modules;
 
 import java.util.ArrayList;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Tag;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
@@ -34,6 +35,9 @@ public class Prediction {
         ArrayList<Course> predictedCourses = new ArrayList<>();
 
         if(!canPredict())
+            return predictedCourses;
+
+        if(!isReachable())
             return predictedCourses;
 
         for (Course c: this.getStudent().getCourses().values()) {
@@ -90,5 +94,29 @@ public class Prediction {
             return true;
         else
             return false;
+    }
+
+    /**
+     * Checks if the student can reach the intended average with the one he currently has
+     * @return whether the prediction is reachable or not
+     */
+    public boolean isReachable(){
+        Student testStudent = new Student(student.getIntendedAverage(),
+                                            student.getAverage(),
+                                            student.getPredictionAverage(),
+                                            student.getBologna(),
+                                            student.getCompletedECTs());
+
+        testStudent.setBranch(Branch.valueOf(student.getBranch()),student.getCourses());
+
+        for(Course c: testStudent.getCourses().values())
+            if(c.getGrade() < 9.5)
+                c.setGrade(20F);
+
+        if(ECTSCalculator.getAverage(testStudent) < student.getIntendedAverage())
+            return false;
+        else
+            return true;
+
     }
 }
