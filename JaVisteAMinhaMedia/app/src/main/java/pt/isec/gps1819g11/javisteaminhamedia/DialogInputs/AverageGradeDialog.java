@@ -70,7 +70,6 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
                 if(!value.isEmpty()){
                     float intendedAverage = Integer.parseInt(value);
                     if(intendedAverage <= 20 && intendedAverage > 9.5 ){
-                        //TODO: Update average grade
                         try{
                         student.setIntendedAverage(intendedAverage);
                         studentManager.savesStudent(student);

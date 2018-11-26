@@ -70,5 +70,7 @@ public class BranchSelectionDialog extends DialogFragment implements View.OnClic
             default:
                 break;
         }
+
+        mainActivity.recreate();
     }
 }
