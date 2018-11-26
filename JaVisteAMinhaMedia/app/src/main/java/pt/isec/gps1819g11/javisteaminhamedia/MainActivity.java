@@ -14,8 +14,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 
-import pt.isec.gps1819g11.javisteaminhamedia.Activities.AverageGradeDialog;
-import pt.isec.gps1819g11.javisteaminhamedia.Activities.BranchSelectionDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.DialogInputs.AverageGradeDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.DialogInputs.BranchSelectionDialog;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.GradesFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.PredictionFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
