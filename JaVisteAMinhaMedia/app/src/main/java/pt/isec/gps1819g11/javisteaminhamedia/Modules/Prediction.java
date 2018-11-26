@@ -32,6 +32,9 @@ public class Prediction {
     public ArrayList<Course> getPrediction(){
         int countLeft = 0;
         float prediction;
+        int newECTS = 0;
+        float scoreLeft = 0F;
+        float newAverage = 0F;
         ArrayList<Course> predictedCourses = new ArrayList<>();
 
         if(!canPredict())
@@ -43,9 +46,9 @@ public class Prediction {
         for (Course c: this.getStudent().getCourses().values()) {
             prediction = 0F;
             if(c.getGrade() < 9.5){
-                int newECTS = student.getCompletedECTs() + c.getEcts();
-                float scoreLeft = student.getIntendedAverage() - student.getAverage();
-                float newAverage = student.getAverage() + (scoreLeft / countLeft);
+                newECTS = student.getCompletedECTs() + c.getEcts();
+                scoreLeft = student.getIntendedAverage() - student.getAverage();
+                newAverage = student.getAverage() + (scoreLeft / countLeft);
 
                 prediction = newAverage * newECTS;
 
