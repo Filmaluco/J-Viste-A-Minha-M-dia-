@@ -1,7 +1,6 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments;
 
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,11 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.CourseAdapter;
@@ -27,14 +24,14 @@ import pt.isec.gps1819g11.javisteaminhamedia.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FirstYearFragment extends Fragment {
+public class YearFragment extends Fragment {
     public MainActivity mainActivity;
     ListView lvSem1,lvSem2;
     ArrayList<Course> dataModels;
     Student student;
     View view;
     public static CourseAdapter adapter;
-    public FirstYearFragment() {
+    public YearFragment() {
         // Required empty public constructor
     }
 
@@ -43,7 +40,7 @@ public class FirstYearFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_first_year, container, false);
+        view = inflater.inflate(R.layout.fragment_year, container, false);
         setupListViews();
 
         mainActivity = (MainActivity)getActivity();
