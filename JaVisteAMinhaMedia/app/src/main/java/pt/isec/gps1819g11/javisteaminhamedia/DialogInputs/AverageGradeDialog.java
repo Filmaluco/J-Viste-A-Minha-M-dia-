@@ -84,6 +84,7 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
                         }
                     }else{
                         inputGrade.setText("");
+                        inputGrade.setHintTextColor(getResources().getColor(R.color.colorPrimary));
                         inputGrade.setHint(R.string.invalid_inserted_grade);
                     }
                 }
