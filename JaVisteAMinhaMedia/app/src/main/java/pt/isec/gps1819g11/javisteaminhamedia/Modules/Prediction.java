@@ -9,7 +9,6 @@ import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
  * @version 0.0
  */
 public class Prediction {
-<<<<<<< HEAD
 
     public float getPrediction(Student s, Course c){
         int countLeft = 0;
@@ -28,6 +27,4 @@ public class Prediction {
         prediction /= c.getEcts();
         return prediction;
     }
-=======
->>>>>>> parent of 37b3c8e... Merge pull request #6 from Filmaluco/BranchVasco
 }
