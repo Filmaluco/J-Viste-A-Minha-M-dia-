@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     public Student student;
     public Toolbar toolbar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,16 +83,12 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         return false;
                 }
-
             }
         });
     }
 
     private void setFragment(Fragment fragment) {
         FragmentManager fManager= getSupportFragmentManager();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("student",student); //Bundle has student serialized
-        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
