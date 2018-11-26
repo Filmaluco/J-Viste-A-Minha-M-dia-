@@ -79,15 +79,15 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                         //TODO: Update grade
                         try {
                             student.setGrade(gradeName, grade);
+                            student.calculateAverage();
                             studentManager.savesStudent(student);
+
                             dismiss();
                         }catch(Exception e){
                             Log.i("Excecção","UpgradeDLG exceção: "+e.toString());
 
                         }
-                        finally{ // finally with the objetive for testing, for not stop the app in the dialog
-                            dismiss();
-                        }
+
                     }else{
                         inputGrade.setText("");
                         inputGrade.setHint("Nota inserida inválida");

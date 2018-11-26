@@ -41,14 +41,6 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
         int position=(Integer) v.getTag();
         Object object= getItem(position);
         Course dataModel=(Course) object;
-
-        /*switch (v.getId())
-        {
-            case R.id.item_info:
-                Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-                break;
-        }*/
       
     }
 
