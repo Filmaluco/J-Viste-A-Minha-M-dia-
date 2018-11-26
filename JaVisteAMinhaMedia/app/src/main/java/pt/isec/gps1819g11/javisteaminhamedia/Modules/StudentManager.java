@@ -35,6 +35,8 @@ public class StudentManager {
         // Assets Files
     private static final String USER_DATA_FILE = "student.bin";
     private static final String ASSET_ISEC_DA_FILE = "isecDA.txt";
+    private static final String ASSET_ISEC_SI_FILE = "isecSI.txt";
+    private static final String ASSET_ISEC_RAS_FILE = "isecRAS.txt";
     //Private Variables
     Context context;
 
@@ -103,6 +105,7 @@ public class StudentManager {
      */
     public void updateStudentBranch(Student student, Branch newBranch){
         student.setBranch(newBranch, loadGrades(newBranch));
+        this.savesStudent(student);
     }
 
     /**
@@ -162,6 +165,12 @@ public class StudentManager {
             switch (branch) {
                 case DA:
                     grades = loadGradesFromAsset(ASSET_ISEC_DA_FILE);
+                    break;
+                case SI:
+                    grades = loadGradesFromAsset(ASSET_ISEC_SI_FILE);
+                    break;
+                case RAS:
+                    grades = loadGradesFromAsset(ASSET_ISEC_RAS_FILE);
                     break;
                 default:
                     Log.w(TAG, "Branch <" + branch.name() + "> is not yet implemented");

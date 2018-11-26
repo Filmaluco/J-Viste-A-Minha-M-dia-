@@ -25,7 +25,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/notaAtual"
+            android:id="@+id/current_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -51,7 +51,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/notaBolonha"
+            android:id="@+id/bologna_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -75,7 +75,7 @@
             android:textSize="22sp" />
 
         <TextView
-            android:id="@+id/mediaPretendida"
+            android:id="@+id/intended_average"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
