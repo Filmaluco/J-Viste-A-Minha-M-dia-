@@ -19,6 +19,7 @@ import java.util.Map;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.CourseAdapter;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.UpdateGradesDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Tag;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
@@ -60,7 +61,7 @@ public class FirstYearFragment extends Fragment {
             dataModels = new ArrayList<>();
             Map<String, Course> m = student.getCourses();
             for (Course c : m.values()) {
-                dataModels.add(new Course(c.getName(), c.getTag(), c.getEcts(), c.getGrade()));
+                dataModels.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), c.getGrade()));
 
             }
 
