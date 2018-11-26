@@ -27,4 +27,5 @@ public class Prediction {
         prediction /= c.getEcts();
         return prediction;
     }
+
 }
