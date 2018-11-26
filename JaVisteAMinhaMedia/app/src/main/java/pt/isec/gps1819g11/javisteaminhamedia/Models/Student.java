@@ -222,7 +222,7 @@ public class Student implements Serializable {
      * @return float value of the predicted grade
      */
 
-    private ArrayList<Course> calculatePrediction(){
+    public ArrayList<Course> calculatePrediction(){
         Prediction prediction = new Prediction(this);
 
         return prediction.getPrediction();
@@ -235,7 +235,7 @@ public class Student implements Serializable {
      * @return null if it couldn't convert <br>
      *     char value of the conversation
      */
-    private char convertToBologna(float average){
+    public char convertToBologna(float average){
         throw new UnsupportedOperationException("Operation not implemented yet");
     }
 
