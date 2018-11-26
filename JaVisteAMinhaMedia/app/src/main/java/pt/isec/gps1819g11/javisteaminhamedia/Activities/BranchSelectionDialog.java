@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
@@ -54,17 +55,14 @@ public class BranchSelectionDialog extends DialogFragment implements View.OnClic
 
                 switch (selectedBranchOption){
                     case R.id.rb_da:
-                        //TODO: Set Branch DA
-                        //mainActivity.student.setBranch();
+                        mainActivity.studentManager.updateStudentBranch(mainActivity.student, Branch.DA);
                         break;
                     case R.id.rb_si:
-                        //TODO: Set Branch SI
-                        //mainActivity.student.setBranch();
+                        mainActivity.studentManager.updateStudentBranch(mainActivity.student, Branch.SI);
                         break;
 
                     case R.id.rb_rd:
-                        //TODO: Set Branch SI
-                        //mainActivity.student.setBranch();
+                        mainActivity.studentManager.updateStudentBranch(mainActivity.student, Branch.RAS);
                         break;
                 }
                 dismiss();

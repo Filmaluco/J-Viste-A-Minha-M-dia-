@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         studentManager = new StudentManager(this);
-       //student = studentManager.loadStudent();
-        Student student = new Student();
+        student = studentManager.loadStudent();
 
         setupComponents();
 
