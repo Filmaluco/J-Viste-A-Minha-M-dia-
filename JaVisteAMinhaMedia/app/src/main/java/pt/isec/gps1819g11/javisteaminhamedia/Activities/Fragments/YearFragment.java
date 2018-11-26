@@ -58,7 +58,7 @@ public class YearFragment extends Fragment {
             dataModels = new ArrayList<>();
             Map<String, Course> m = student.getCourses();
             for (Course c : m.values()) {
-                dataModels.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), c.getGrade()));
+                dataModels.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), c.getGrade(),c.getAno(),c.getSemestre()));
 
             }
 
