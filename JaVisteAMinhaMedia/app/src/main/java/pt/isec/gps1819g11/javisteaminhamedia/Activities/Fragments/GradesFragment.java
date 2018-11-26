@@ -46,9 +46,9 @@ public class GradesFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFragments(new FirstYearFragment(), "1º Ano");
-        adapter.addFragments(new SecondYearFragment(), "2º Ano");
-        adapter.addFragments(new ThirdYearFragment(), "3º Ano");
+        adapter.addFragments(new YearFragment(1), "1º Ano");
+        adapter.addFragments(new YearFragment(2), "2º Ano");
+        adapter.addFragments(new YearFragment(3), "3º Ano");
         viewPager.setAdapter(adapter);
     }
 

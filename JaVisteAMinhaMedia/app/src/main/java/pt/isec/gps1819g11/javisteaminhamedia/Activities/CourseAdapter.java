@@ -1,15 +1,11 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -21,6 +17,7 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
     private ArrayList<Course> dataSet;
     Context mContext;
     TextView textView;
+    int layoutID;
 
     // View lookup cache
     private static class ViewHolder {
@@ -29,10 +26,9 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
     }
 
     public CourseAdapter(ArrayList<Course> data, Context context) {
-        super(context, R.layout.listview_row_item, data);
+        super(context, R.layout.listview_grades_row_item, data);
         this.dataSet = data;
         this.mContext=context;
-
     }
 
     @Override
@@ -41,14 +37,6 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
         int position=(Integer) v.getTag();
         Object object= getItem(position);
         Course dataModel=(Course) object;
-
-        /*switch (v.getId())
-        {
-            case R.id.item_info:
-                Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
-                        .setAction("No action", null).show();
-                break;
-        }*/
       
     }
 
@@ -67,7 +55,7 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
 
             viewHolder = new ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.listview_row_item, parent, false);
+            convertView = inflater.inflate(layoutID, parent, false);
             viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
             viewHolder.textCircle = (TextView) convertView.findViewById(R.id.textCircle);
 
@@ -92,5 +80,9 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
 
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    public void setLayout(int layoutID){
+        this.layoutID = layoutID;
     }
 }
