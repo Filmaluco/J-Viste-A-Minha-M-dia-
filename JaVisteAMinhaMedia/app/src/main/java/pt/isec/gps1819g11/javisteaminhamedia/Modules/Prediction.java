@@ -53,7 +53,9 @@ public class Prediction {
                     prediction -= (completed.getGrade() * completed.getEcts());
                 prediction /= c.getEcts();
             }
-            predictedCourses.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), prediction));
+
+            predictedCourses.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), prediction, c.getAno(), c.getSemestre()));
+
         }
 
         return predictedCourses;
@@ -70,6 +72,9 @@ public class Prediction {
         int countTag4 = 0;
         int countTag5 = 0;
         int countTag6 = 0;
+
+
+        //TODO switch
 
         for (Course c: this.getStudent().getCourses().values()) {
             if (c.getGrade() >= 9.5){

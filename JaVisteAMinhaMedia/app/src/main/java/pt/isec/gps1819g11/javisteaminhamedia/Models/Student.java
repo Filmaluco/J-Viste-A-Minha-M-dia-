@@ -1,11 +1,13 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import java.util.List;
 import java.util.Map;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.ECTSCalculator;
 import pt.isec.gps1819g11.javisteaminhamedia.Modules.Prediction;
 
 /**
@@ -171,7 +173,9 @@ public class Student implements Serializable {
      * @param value is the value to associate with that course
      */
     public void setGrade(String key, float value){
-        this.courses.get(key).setGrade(value);
+        Course temp = this.courses.get(key);
+        temp.setGrade(value);
+        this.completedECTs += temp.getEcts();
     }
 
     //----------------------------------------------------------------------------------------------
@@ -203,19 +207,14 @@ public class Student implements Serializable {
      *
      * @return float value of the calculated average
      */
-    private float calculateAverage(){
-        average = 0;
-        int nGrades = 0;
-        for(Course c : courses.values()){
-            if(c.getGrade() > 9.5)
-            {
-                average += (c.getGrade()*c.getEcts());
-                nGrades++;
-            }
-
-        }
-
-        return average/=nGrades;
+    public float calculateAverage(){
+        int nEcts = 0;
+        average = ECTSCalculator.getAverage(this);
+        // = Math.round(average * 10) / 10.0;
+        DecimalFormat df = new DecimalFormat("#.###");
+        String averageWithOneDecimalPlace = df.format(average);
+        average = Float.parseFloat(averageWithOneDecimalPlace);
+        return average;
     }
 
     /**
@@ -223,7 +222,9 @@ public class Student implements Serializable {
      * @return float value of the predicted grade
      */
 
-    private ArrayList<Course> calculatePrediction(){
+
+    public ArrayList<Course> calculatePrediction(){
+
         Prediction prediction = new Prediction(this);
 
         return prediction.getPrediction();
@@ -236,7 +237,7 @@ public class Student implements Serializable {
      * @return null if it couldn't convert <br>
      *     char value of the conversation
      */
-    private char convertToBologna(float average){
+    public char convertToBologna(float average){
         throw new UnsupportedOperationException("Operation not implemented yet");
     }
 
