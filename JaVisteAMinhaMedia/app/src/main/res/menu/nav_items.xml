@@ -6,6 +6,7 @@
         android:id="@+id/navbar_grades"
         android:icon="@drawable/round_school_black_24dp"
         android:title="@string/nav_grades" />
+
     <item
         android:id="@+id/navbar_prediction"
         android:icon="@drawable/round_info_black_24dp"
