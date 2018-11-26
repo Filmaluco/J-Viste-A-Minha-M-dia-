@@ -1,4 +1,4 @@
-package pt.isec.gps1819g11.javisteaminhamedia.Activities;
+package pt.isec.gps1819g11.javisteaminhamedia.DialogInputs;
 
 import android.app.Dialog;
 import android.os.Bundle;
