@@ -35,6 +35,8 @@ public class StudentManager {
         // Assets Files
     private static final String USER_DATA_FILE = "student.bin";
     private static final String ASSET_ISEC_DA_FILE = "isecDA.txt";
+    private static final String ASSET_ISEC_SI_FILE = "isecSI.txt";
+    private static final String ASSET_ISEC_RAS_FILE = "isecRAS.txt";
     //Private Variables
     Context context;
 
@@ -103,6 +105,7 @@ public class StudentManager {
      */
     public void updateStudentBranch(Student student, Branch newBranch){
         student.setBranch(newBranch, loadGrades(newBranch));
+        this.savesStudent(student);
     }
 
     /**
@@ -163,6 +166,12 @@ public class StudentManager {
                 case DA:
                     grades = loadGradesFromAsset(ASSET_ISEC_DA_FILE);
                     break;
+                case SI:
+                    grades = loadGradesFromAsset(ASSET_ISEC_SI_FILE);
+                    break;
+                case RAS:
+                    grades = loadGradesFromAsset(ASSET_ISEC_RAS_FILE);
+                    break;
                 default:
                     Log.w(TAG, "Branch <" + branch.name() + "> is not yet implemented");
                     throw new UnsupportedOperationException("Branch <" + branch.name() + "> is not yet implemented");
@@ -196,12 +205,14 @@ public class StudentManager {
             while ((readLine = reader.readLine()) != null) {
                 try {
                     StringTokenizer tokenizer = new StringTokenizer(readLine);
+                    int ano  = Integer.parseInt(tokenizer.nextToken());
+                    int semestre =  Integer.parseInt(tokenizer.nextToken());
                     int ects = Integer.parseInt(tokenizer.nextToken());
                     float grade = Float.parseFloat(tokenizer.nextToken());
                     Tag tag = Tag.valueOf(tokenizer.nextToken());
                     String tempName = tokenizer.nextToken("");
 
-                    Course tempCourse = new Course(tempName, tag, ects, grade);
+                    Course tempCourse = new Course(tempName, tag, ects, grade,ano,semestre);
 
                     grades.put(tempCourse.getName(), tempCourse);
                 }catch (Exception e){

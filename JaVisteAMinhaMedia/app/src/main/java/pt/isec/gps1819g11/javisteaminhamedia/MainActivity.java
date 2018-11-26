@@ -14,8 +14,8 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 
-import pt.isec.gps1819g11.javisteaminhamedia.Activities.AverageGradeDialog;
-import pt.isec.gps1819g11.javisteaminhamedia.Activities.BranchSelectionDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.DialogInputs.AverageGradeDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.DialogInputs.BranchSelectionDialog;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.GradesFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.PredictionFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
@@ -23,7 +23,7 @@ import pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavbar;
+    public BottomNavigationView bottomNavbar;
     private FrameLayout mainFrame;
 
     private GradesFragment gradesFragment;
@@ -33,18 +33,15 @@ public class MainActivity extends AppCompatActivity {
     public Student student;
     public Toolbar toolbar;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        studentManager = new StudentManager();
-       //student = studentManager.loadStudent();
-        Student student = new Student();
+        studentManager = new StudentManager(this);
+        student = studentManager.loadStudent();
 
         setupComponents();
-
         setupListeners();
     }
 
@@ -85,16 +82,12 @@ public class MainActivity extends AppCompatActivity {
                     default:
                         return false;
                 }
-
             }
         });
     }
 
     private void setFragment(Fragment fragment) {
         FragmentManager fManager= getSupportFragmentManager();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("student",student); //Bundle has student serialized
-        fragment.setArguments(bundle);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();

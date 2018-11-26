@@ -16,16 +16,16 @@
  2 1 5 0 Programing Introdução à Inteligência Artificial
  2 1 5 0 Logic Base de Dados
  2 1 5 0 Neutral Investigação Operacional
- 2 2 5 0 Programing Sistemas Operativos II
- 2 2 5 0 Group Empreendedorismo e Inovação
- 2 2 5 0 Theory Interacção Pessoa-Máquina
- 2 2 5 0 Programing Programação Avançada
+ 2 2 5 0 Logic Arquitetura e Administração de Bases de Dados
+ 2 2 5 0 Theory Integração de Dados
+ 2 2 5 0 Theory Sistemas de Informação I
  2 2 5 0 Theory Modelação e Design
  2 2 5 0 Logic Conhecimento e Raciocínio
- 3 1 6 0 Theory Estruturas de Dados
- 3 1 6 0 Programing Programação Distribuída
- 3 1 6 0 Programing Arquitecturas Móveis
- 3 1 6 0 Group Gestão de Projecto de Sofware
+ 2 2 5 0 Group Empreendedorismo e Inovação
+ 3 1 6 0 Theory Estratégia Organizacional
+ 3 1 6 0 Programing Inteligência Computacional
+ 3 1 6 0 Neutral Metodologias de Otimização e Apoio à Decisão
+ 3 1 6 0 Logic Sistemas de Informação II
  3 1 6 0 Programing Programação Web
  3 2 3 0 Group Ética e Deontologia
  3 2 27 0 Programing Projecto ou Estágio
