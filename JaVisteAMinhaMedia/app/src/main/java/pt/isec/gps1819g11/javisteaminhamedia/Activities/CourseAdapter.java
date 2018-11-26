@@ -2,11 +2,14 @@ package pt.isec.gps1819g11.javisteaminhamedia.Activities;
 
 import android.content.Context;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -17,10 +20,12 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
 
     private ArrayList<Course> dataSet;
     Context mContext;
+    TextView textView;
 
     // View lookup cache
     private static class ViewHolder {
         TextView txtName;
+        TextView textCircle;
     }
 
     public CourseAdapter(ArrayList<Course> data, Context context) {
@@ -37,13 +42,14 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
         Object object= getItem(position);
         Course dataModel=(Course) object;
 
-       /* switch (v.getId())
+        /*switch (v.getId())
         {
             case R.id.item_info:
                 Snackbar.make(v, "Release date " +dataModel.getFeature(), Snackbar.LENGTH_LONG)
                         .setAction("No action", null).show();
                 break;
         }*/
+      
     }
 
     private int lastPosition = -1;
@@ -63,13 +69,14 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.listview_row_item, parent, false);
             viewHolder.txtName = (TextView) convertView.findViewById(R.id.name);
-
+            viewHolder.textCircle = (TextView) convertView.findViewById(R.id.textCircle);
 
             result=convertView;
 
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
+
             result=convertView;
         }
 
@@ -77,6 +84,11 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
         lastPosition = position;
 
         viewHolder.txtName.setText(dataModel.getName());
+        if(dataModel.getGrade() >= 9.5 && dataModel.getGrade() <= 20)
+          viewHolder.textCircle.setText(Float.toString(dataModel.getGrade()));
+        else{
+            viewHolder.textCircle.setText(" ");
+        }
 
         // Return the completed view to render on screen
         return convertView;

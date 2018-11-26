@@ -14,10 +14,11 @@
         android:background="@drawable/oval">
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/textCircle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:textSize="12sp"
             android:text="HelloWorld" />
     </RelativeLayout>
 

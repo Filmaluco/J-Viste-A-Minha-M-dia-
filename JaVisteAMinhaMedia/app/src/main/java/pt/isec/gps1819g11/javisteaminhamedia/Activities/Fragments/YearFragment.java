@@ -61,6 +61,7 @@ public class YearFragment extends Fragment {
             for (Course c : m.values()) {
                 dataModels.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), c.getGrade(),c.getAno(),c.getSemestre()));
 
+
             }
 
             adapter = new CourseAdapter(dataModels, getContext());
