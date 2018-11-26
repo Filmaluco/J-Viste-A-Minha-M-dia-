@@ -74,6 +74,7 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
                         try{
                         student.setIntendedAverage(intendedAverage);
                         studentManager.savesStudent(student);
+                        ((TextView)mainActivity.findViewById(R.id.intended_average)).setText(value);
 
                         dismiss();
                         }catch(Exception e){
