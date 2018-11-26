@@ -1,31 +1,31 @@
- 6 0 Logic Análise Matemática I
- 5 0 Logic Álgebra Linear
- 5 0 Programing Introdução à Programação
- 5 0 Logic Sistemas Digitais
- 4 0 Theory Tecnologias WEB
- 5 0 Group Gestão
- 6 0 Logic Análise Matemática II
- 5 0 Neutral Fundamentos de Computação Gráfica
- 5 0 Programing Sistemas Operativos
- 5 0 Programing Programação
- 5 0 Theory Tecnologias e Arquitecturas de Computadores
- 4 0 Logic Electrónica
- 5 0 Programing Programação Orientada a Objectos
- 5 0 Networking Introdução às Redes de Comunicação
- 5 0 Logic Métodos Estatísticos
- 5 0 Programing Introdução à Inteligência Artificial
- 5 0 Logic Base de Dados
- 5 0 Neutral Investigação Operacional
- 5 0 Logic Arquitetura e Administração de Bases de Dados
- 5 0 Theory Integração de Dados
- 5 0 Theory Sistemas de Informação I
- 5 0 Theory Modelação e Design
- 5 0 Logic Conhecimento e Raciocínio
- 5 0 Group Empreendedorismo e Inovação
- 6 0 Theory Estratégia Organizacional
- 6 0 Programing Inteligência Computacional
- 6 0 Neutral Metodologias de Otimização e Apoio à Decisão
- 6 0 Logic Sistemas de Informação II
- 6 0 Programing Programação Web
- 3 0 Group Ética e Deontologia
-27 0 Programing Projecto ou Estágio
+ 1 1 6 0 Logic Análise Matemática I
+ 1 1 5 0 Logic Álgebra Linear
+ 1 1 5 0 Programing Introdução à Programação
+ 1 1 5 0 Logic Sistemas Digitais
+ 1 1 4 0 Theory Tecnologias WEB
+ 1 1 5 0 Group Gestão
+ 1 2 6 0 Logic Análise Matemática II
+ 1 2 5 0 Neutral Fundamentos de Computação Gráfica
+ 1 2 5 0 Programing Sistemas Operativos
+ 1 2 5 0 Programing Programação
+ 1 2 5 0 Theory Tecnologias e Arquitecturas de Computadores
+ 1 2 4 0 Logic Electrónica
+ 2 1 5 0 Programing Programação Orientada a Objectos
+ 2 1 5 0 Networking Introdução às Redes de Comunicação
+ 2 1 5 0 Logic Métodos Estatísticos
+ 2 1 5 0 Programing Introdução à Inteligência Artificial
+ 2 1 5 0 Logic Base de Dados
+ 2 1 5 0 Neutral Investigação Operacional
+ 2 2 5 0 Logic Arquitetura e Administração de Bases de Dados
+ 2 2 5 0 Theory Integração de Dados
+ 2 2 5 0 Theory Sistemas de Informação I
+ 2 2 5 0 Theory Modelação e Design
+ 2 2 5 0 Logic Conhecimento e Raciocínio
+ 2 2 5 0 Group Empreendedorismo e Inovação
+ 3 1 6 0 Theory Estratégia Organizacional
+ 3 1 6 0 Programing Inteligência Computacional
+ 3 1 6 0 Neutral Metodologias de Otimização e Apoio à Decisão
+ 3 1 6 0 Logic Sistemas de Informação II
+ 3 1 6 0 Programing Programação Web
+ 3 2 3 0 Group Ética e Deontologia
+ 3 2 27 0 Programing Projecto ou Estágio

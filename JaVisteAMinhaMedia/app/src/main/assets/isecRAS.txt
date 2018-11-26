@@ -1,32 +1,32 @@
- 6 0 Logic Análise Matemática I
- 5 0 Logic Álgebra Linear
- 5 0 Programing Introdução à Programação
- 5 0 Logic Sistemas Digitais
- 4 0 Theory Tecnologias WEB
- 5 0 Group Gestão
- 6 0 Logic Análise Matemática II
- 5 0 Neutral Fundamentos de Computação Gráfica
- 5 0 Programing Sistemas Operativos
- 5 0 Programing Programação
- 5 0 Theory Tecnologias e Arquitecturas de Computadores
- 4 0 Logic Electrónica
- 5 0 Programing Programação Orientada a Objectos
- 5 0 Networking Introdução às Redes de Comunicação
- 5 0 Logic Métodos Estatísticos
- 5 0 Programing Introdução à Inteligência Artificial
- 5 0 Logic Base de Dados
- 5 0 Neutral Investigação Operacional
- 5 0 Programing Sistemas Operativos II
- 5 0 Group Empreendedorismo e Inovação
- 5 0 Networking Serviços de Rede I
- 5 0 Networking Cablagem Estruturada
- 5 0 Networking Encaminhamento de Dados
- 5 0 Networking Segurança
- 6 0 Networking Tecnologias de Ligação
- 6 0 Networking Serviços de Rede II
- 6 0 Networking Disponibilidade e Desempenho
- 6 0 Networking Gestão de Redes
- 6 0 Programing Programação Web
- 3 0 Group Ética e Deontologia
-27 0 Programing Projecto ou Estágio
+ 1 1 6 0 Logic Análise Matemática I
+ 1 1 5 0 Logic Álgebra Linear
+ 1 1 5 0 Programing Introdução à Programação
+ 1 1 5 0 Logic Sistemas Digitais
+ 1 1 4 0 Theory Tecnologias WEB
+ 1 1 5 0 Group Gestão
+ 1 2 6 0 Logic Análise Matemática II
+ 1 2 5 0 Neutral Fundamentos de Computação Gráfica
+ 1 2 5 0 Programing Sistemas Operativos
+ 1 2 5 0 Programing Programação
+ 1 2 5 0 Theory Tecnologias e Arquitecturas de Computadores
+ 1 2 4 0 Logic Electrónica
+ 2 1 5 0 Programing Programação Orientada a Objectos
+ 2 1 5 0 Networking Introdução às Redes de Comunicação
+ 2 1 5 0 Logic Métodos Estatísticos
+ 2 1 5 0 Programing Introdução à Inteligência Artificial
+ 2 1 5 0 Logic Base de Dados
+ 2 1 5 0 Neutral Investigação Operacional
+ 2 2 5 0 Programing Sistemas Operativos II
+ 2 2 5 0 Group Empreendedorismo e Inovação
+ 2 2 5 0 Networking Serviços de Rede I
+ 2 2 5 0 Networking Cablagem Estruturada
+ 2 2 5 0 Networking Encaminhamento de Dados
+ 2 2 5 0 Networking Segurança
+ 3 1 6 0 Networking Tecnologias de Ligação
+ 3 1 6 0 Networking Serviços de Rede II
+ 3 1 6 0 Networking Disponibilidade e Desempenho
+ 3 1 6 0 Networking Gestão de Redes
+ 3 1 6 0 Programing Programação Web
+ 3 2 3 0 Group Ética e Deontologia
+ 3 2 27 0 Programing Projecto ou Estágio
 
