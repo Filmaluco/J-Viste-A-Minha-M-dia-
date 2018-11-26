@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
 
@@ -29,6 +30,7 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
     public Dialog dialog;
     private Button cancel, update;
     public EditText inputGrade;
+    StudentManager studentManager;
     String gradeName;
     MainActivity mainActivity;
     Student student;
@@ -38,6 +40,7 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
     public UpdateGradesDialog(Student s, String gradeName){
         student = s;
         this.gradeName = gradeName;
+
     }
 
 
@@ -47,6 +50,7 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
         update = (Button) v.findViewById(R.id.btnUpdate);
         inputGrade = (EditText) v.findViewById(R.id.grade);
         mainActivity = (MainActivity) getActivity();
+        studentManager = new StudentManager(mainActivity);
         cancel.setOnClickListener(this);
         update.setOnClickListener(this);
         return v;
@@ -75,6 +79,7 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                         //TODO: Update grade
                         try {
                             student.setGrade(gradeName, grade);
+                            studentManager.savesStudent(student);
                             dismiss();
                         }catch(Exception e){
                             Log.i("Excecção","UpgradeDLG exceção: "+e.toString());
