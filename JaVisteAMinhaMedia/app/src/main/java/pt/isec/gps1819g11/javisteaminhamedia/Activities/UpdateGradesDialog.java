@@ -74,7 +74,7 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                     if(grade <= 20 && grade > 9.5 ){
                         //TODO: Update grade
                         try {
-                            student.setGrade(gradeName, grade);
+                          //  student.setGrade(gradeName, grade);
                             dismiss();
                         }catch(Exception e){
                             Log.i("Excecção","UpgradeDLG exceção: "+e.toString());

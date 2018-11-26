@@ -74,7 +74,8 @@ public class YearFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Object o = lvSem1.getItemAtPosition(position);
-                String gradeName = (String)o;
+                Course c = (Course)o;
+                String gradeName = c.getName();
                 Log.i("Teste","->" + gradeName);
 
 
