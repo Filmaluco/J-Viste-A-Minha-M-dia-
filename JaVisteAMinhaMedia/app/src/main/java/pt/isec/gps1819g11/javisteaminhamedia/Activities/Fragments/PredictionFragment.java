@@ -31,9 +31,6 @@ public class PredictionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        //currentAverage.setText(Float.toString(student.getAverage()));
-        //intendedAverage.setText(Float.toString(student.getIntendedAverage()));
-        //bolognaAverage.setText(Float.toString(student.getBologna()));
     }
 
     @Override
@@ -46,6 +43,12 @@ public class PredictionFragment extends Fragment {
         bolognaAverage = (TextView) view.findViewById(R.id.bologna_average);
         mainActivity = (MainActivity) getActivity();
         student = mainActivity.student;
+
+
+        currentAverage.setText(Float.toString(student.getAverage()));
+        intendedAverage.setText(Float.toString(student.getIntendedAverage()));
+        bolognaAverage.setText(Character.toString(student.getBologna()));
+
         return view;
     }
 

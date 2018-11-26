@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         student = studentManager.loadStudent();
 
         setupComponents();
-
         setupListeners();
     }
 
