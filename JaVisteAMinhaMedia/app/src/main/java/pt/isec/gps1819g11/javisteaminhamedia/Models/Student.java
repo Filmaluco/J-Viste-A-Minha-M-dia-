@@ -2,6 +2,7 @@ package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
@@ -218,24 +219,15 @@ public class Student implements Serializable {
     }
 
     /**
-     * @param c is the course which will have its grade predicted
+     *
      * @return float value of the predicted grade
      */
-    private float calculatePrediction(Course c){
-        float prediction = 0F;
-        int newECTS = completedECTs + c.getEcts();
-        float scoreLeft = intendedAverage - average;
-        float newAverage = average /*+ (scoreLeft/ "numero de cadeiras que faltam fazer")*/;
 
-        prediction = newAverage * newECTS;
+    private ArrayList<Course> calculatePrediction(){
+        Prediction prediction = new Prediction(this);
 
-        for(Course completed : courses.values())
-            prediction -= (completed.getGrade() * completed.getEcts());
+        return prediction.getPrediction();
 
-        prediction /= c.getEcts();
-
-
-        return prediction;
     }
 
     /**
