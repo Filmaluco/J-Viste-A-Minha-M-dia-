@@ -66,11 +66,15 @@ public class YearFragment extends Fragment {
             dataModels = student.getList(year, 1);
 
             adapter = new CourseAdapter(dataModels, getContext());
+            adapter.setLayout(R.layout.listview_grades_row_item);
+
             lvSem1.setAdapter(adapter);
 
             dataModels = student.getList(year, 2);
 
             adapter = new CourseAdapter(dataModels, getContext());
+            adapter.setLayout(R.layout.listview_grades_row_item);
+
             lvSem2.setAdapter(adapter);
         }catch (Exception e){
             Log.i("Exceção","setupListViews exceção " + e);
