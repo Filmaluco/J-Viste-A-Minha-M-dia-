@@ -73,23 +73,28 @@ public class Prediction {
         int countTag5 = 0;
         int countTag6 = 0;
 
-
-        //TODO switch
-
         for (Course c: this.getStudent().getCourses().values()) {
             if (c.getGrade() >= 9.5){
-                if(c.getTag().equals("Logic"))
-                    countTag1++;
-                if(c.getTag().equals("Theory"))
-                    countTag2++;
-                if(c.getTag().equals("Networking"))
-                    countTag3++;
-                if(c.getTag().equals("Group"))
-                    countTag4++;
-                if(c.getTag().equals("Programing"))
-                    countTag5++;
-                if(c.getTag().equals("Neutral"))
-                    countTag6++;
+                switch (c.getTag()){
+                    case "Logic":
+                        countTag1++;
+                        break;
+                    case "Theory":
+                        countTag2++;
+                        break;
+                    case "Networking":
+                        countTag3++;
+                        break;
+                    case "Group":
+                        countTag4++;
+                        break;
+                    case "Programing":
+                        countTag5++;
+                        break;
+                    case "Neutral":
+                        countTag6++;
+                        break;
+                }
             }
             else
                 coursesLeft++;
@@ -118,11 +123,22 @@ public class Prediction {
             if(c.getGrade() < 9.5)
                 c.setGrade(20F);
 
-        if(ECTSCalculator.getAverage(testStudent) < student.getIntendedAverage())
+        if(this.getTestAverage(testStudent) < student.getIntendedAverage())
             return false;
         else
             return true;
 
+    }
+
+    public float getTestAverage(Student t){
+
+        float average = 0F;
+
+        for (Course c: t.getCourses().values()) {
+            average += (c.getGrade() * c.getEcts());
+        }
+
+        return average / 180;
     }
 
 }
