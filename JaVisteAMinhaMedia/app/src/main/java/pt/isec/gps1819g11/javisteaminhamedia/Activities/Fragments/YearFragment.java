@@ -40,12 +40,13 @@ public class YearFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mainActivity = (MainActivity)getActivity();
+        student = mainActivity.student;
+
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_year, container, false);
         setupListViews();
 
-        mainActivity = (MainActivity)getActivity();
-        student = mainActivity.student;
         return view;
     }
     void setupListViews(){
