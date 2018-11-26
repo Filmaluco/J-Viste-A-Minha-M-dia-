@@ -1,6 +1,8 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 import pt.isec.gps1819g11.javisteaminhamedia.Modules.Prediction;
@@ -176,6 +178,24 @@ public class Student implements Serializable {
     //----------------------------------------------------------------------------------------------
 
     // Public Methods ------------------------------------------------------------------------------
+
+    /**
+     * 
+     * @param year is the year the courses wanted
+     * @param semester is the semester of the courses wanted
+     * @return an arrayList of courses with the specified year and semester
+     */
+    public ArrayList<Course> getList(int year, int semester){
+        ArrayList<Course> list = new ArrayList<>();
+
+        for (Course c: courses.values()){
+            if (c.getAno() == year && c.getSemestre() == semester)
+                list.add(c);
+        }
+
+        return list;
+    }
+
 
     // Private Methods -----------------------------------------------------------------------------
     /**

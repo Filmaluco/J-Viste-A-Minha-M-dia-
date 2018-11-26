@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.CourseAdapter;
-import pt.isec.gps1819g11.javisteaminhamedia.Activities.UpdateGradesDialog;
+import pt.isec.gps1819g11.javisteaminhamedia.DialogInputs.UpdateGradesDialog;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Tag;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;

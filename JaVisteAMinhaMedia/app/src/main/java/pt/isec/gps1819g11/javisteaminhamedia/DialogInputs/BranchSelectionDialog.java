@@ -1,4 +1,4 @@
-package pt.isec.gps1819g11.javisteaminhamedia.Activities;
+package pt.isec.gps1819g11.javisteaminhamedia.DialogInputs;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -70,5 +70,8 @@ public class BranchSelectionDialog extends DialogFragment implements View.OnClic
             default:
                 break;
         }
+
+        mainActivity.recreate();
+        mainActivity.bottomNavbar.setSelectedItemId(R.id.navbar_prediction);
     }
 }

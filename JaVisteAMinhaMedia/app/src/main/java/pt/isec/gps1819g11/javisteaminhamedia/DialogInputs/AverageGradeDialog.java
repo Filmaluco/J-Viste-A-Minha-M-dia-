@@ -1,7 +1,6 @@
-package pt.isec.gps1819g11.javisteaminhamedia.Activities;
+package pt.isec.gps1819g11.javisteaminhamedia.DialogInputs;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,34 +9,29 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
-
 @SuppressLint("ValidFragment")
-public class UpdateGradesDialog extends DialogFragment implements View.OnClickListener {
+public class AverageGradeDialog extends DialogFragment implements View.OnClickListener {
 
-    //TODO: expand for Prediction (Constructor sets hint and title text)
     public Dialog dialog;
     private Button cancel, update;
     public EditText inputGrade;
-    String gradeName;
+    TextView title;
     MainActivity mainActivity;
     Student student;
-
+    StudentManager studentManager;
 
     @SuppressLint("ValidFragment")
-    public UpdateGradesDialog(Student s, String gradeName){
-        student = s;
-        this.gradeName = gradeName;
+    public AverageGradeDialog(Student student){
+        this.student = student;
     }
 
 
@@ -46,7 +40,11 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
         cancel = (Button) v.findViewById(R.id.btnCancel);
         update = (Button) v.findViewById(R.id.btnUpdate);
         inputGrade = (EditText) v.findViewById(R.id.grade);
+        title = (TextView) v.findViewById(R.id.title);
+        title.setText("Media Pretendida");
         mainActivity = (MainActivity) getActivity();
+        student = mainActivity.student;
+        studentManager = mainActivity.studentManager;
         cancel.setOnClickListener(this);
         update.setOnClickListener(this);
         return v;
@@ -63,22 +61,23 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.btnCancel:{
-                    dismiss();
+                dismiss();
                 break;
             }
             case R.id.btnUpdate:
 
                 String value = String.valueOf(inputGrade.getText());
                 if(!value.isEmpty()){
-                   float grade = Integer.parseInt(value);
-                    if(grade <= 20 && grade > 9.5 ){
-                        //TODO: Update grade
-                        try {
-                            student.setGrade(gradeName, grade);
-                            dismiss();
-                        }catch(Exception e){
-                            Log.i("Excecção","UpgradeDLG exceção: "+e.toString());
+                    float intendedAverage = Integer.parseInt(value);
+                    if(intendedAverage <= 20 && intendedAverage > 9.5 ){
+                        try{
+                        student.setIntendedAverage(intendedAverage);
+                        studentManager.savesStudent(student);
+                        ((TextView)mainActivity.findViewById(R.id.intended_average)).setText(value);
 
+                        dismiss();
+                        }catch(Exception e){
+                            Log.i("Excecção","IntendedAverageDLG exceção: "+e.toString());
                         }
                         finally{ // finally with the objetive for testing, for not stop the app in the dialog
                             dismiss();
