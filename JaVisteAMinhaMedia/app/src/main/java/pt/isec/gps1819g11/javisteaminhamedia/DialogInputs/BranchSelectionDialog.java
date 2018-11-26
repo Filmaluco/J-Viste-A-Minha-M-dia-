@@ -72,5 +72,6 @@ public class BranchSelectionDialog extends DialogFragment implements View.OnClic
         }
 
         mainActivity.recreate();
+        mainActivity.bottomNavbar.setSelectedItemId(R.id.navbar_prediction);
     }
 }

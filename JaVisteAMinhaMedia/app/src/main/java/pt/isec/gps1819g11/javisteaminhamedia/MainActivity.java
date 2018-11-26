@@ -23,7 +23,7 @@ import pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavbar;
+    public BottomNavigationView bottomNavbar;
     private FrameLayout mainFrame;
 
     private GradesFragment gradesFragment;
