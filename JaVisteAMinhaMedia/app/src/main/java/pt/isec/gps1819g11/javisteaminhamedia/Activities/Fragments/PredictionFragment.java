@@ -64,6 +64,7 @@ public class PredictionFragment extends Fragment {
 
     private void setupPredictedGrades() {
         dataModels = new ArrayList<>();
+
         dataModels = student.calculatePrediction();
 
         adapter = new CourseAdapter(dataModels, getContext());
