@@ -72,11 +72,9 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
         lastPosition = position;
 
         viewHolder.txtName.setText(dataModel.getName());
-        if(dataModel.getGrade() >= 9.5 && dataModel.getGrade() <= 20)
-          viewHolder.textCircle.setText(Float.toString(dataModel.getGrade()));
-        else{
-            viewHolder.textCircle.setText(" ");
-        }
+
+        viewHolder.textCircle.setText(Float.toString(dataModel.getGrade()));
+
 
         // Return the completed view to render on screen
         return convertView;

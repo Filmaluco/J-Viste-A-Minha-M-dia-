@@ -222,7 +222,9 @@ public class Student implements Serializable {
      * @return float value of the predicted grade
      */
 
+
     public ArrayList<Course> calculatePrediction(){
+
         Prediction prediction = new Prediction(this);
 
         return prediction.getPrediction();
