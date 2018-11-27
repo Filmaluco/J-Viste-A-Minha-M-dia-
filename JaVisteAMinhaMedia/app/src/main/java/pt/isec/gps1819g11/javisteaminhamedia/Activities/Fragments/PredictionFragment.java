@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
@@ -44,6 +45,15 @@ public class PredictionFragment extends Fragment {
         mainActivity = (MainActivity) getActivity();
         student = mainActivity.student;
 
+        ImageView sync = view.findViewById(R.id.btnUpdate_bologna_average);
+        sync.setClickable(true);
+        sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                student.convertToBologna();
+                ((TextView)mainActivity.findViewById(R.id.bologna_average)).setText(String.valueOf(student.getBologna()));
+            }
+        });
 
         currentAverage.setText(Float.toString(student.getAverage()));
         intendedAverage.setText(Float.toString(student.getIntendedAverage()));

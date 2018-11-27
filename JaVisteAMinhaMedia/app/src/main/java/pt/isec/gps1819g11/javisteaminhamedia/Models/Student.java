@@ -1,10 +1,15 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Models;
 
+import android.util.Log;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.Bologna;
 import pt.isec.gps1819g11.javisteaminhamedia.Modules.Prediction;
 
 /**
@@ -239,13 +244,16 @@ public class Student implements Serializable {
     }
 
     /**
-     *
-     * @param average to convert to bologna ranking system
-     * @return null if it couldn't convert <br>
-     *     char value of the conversation
+     * Converts the user average to the bologna ranking system
      */
-    private char convertToBologna(float average){
-        throw new UnsupportedOperationException("Operation not implemented yet");
+    public void convertToBologna(){
+        char response = '#';
+        try {
+             response = new Bologna().execute(this.average).get();
+        } catch (Exception e) {
+            Log.w(Bologna.TAG , "Failed to retreive data \n " + e);
+        }
+        this.setBologna(response);
     }
 
 }

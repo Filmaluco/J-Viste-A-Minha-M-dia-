@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         studentManager = new StudentManager(this);
         student = studentManager.loadStudent();
+        student.convertToBologna();
 
         setupComponents();
         setupListeners();
