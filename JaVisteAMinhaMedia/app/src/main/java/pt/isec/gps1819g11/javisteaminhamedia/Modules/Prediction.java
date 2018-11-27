@@ -140,7 +140,8 @@ public class Prediction {
                                             testBologna,
                                             testCompletedECTS);
 
-        Branch testBranch = Branch.valueOf(student.getBranch());
+        String testString = student.getBranch();
+        Branch testBranch = Branch.valueOf(testString);
         Map<String, Course> testMap = new HashMap<>();
         testMap.putAll(student.getCourses());
         testStudent.setBranch(testBranch,testMap);
