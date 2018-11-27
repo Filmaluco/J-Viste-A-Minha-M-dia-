@@ -1,6 +1,8 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Modules;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Tag;
@@ -19,6 +21,10 @@ public class Prediction {
     public Prediction(Student t){
         student = t;
         coursesLeft = 0;
+        for (Course c: t.getCourses().values()) {
+            if(c.getGrade() < 9.5)
+                coursesLeft++;
+        }
     }
 
     public Student getStudent() {
@@ -30,11 +36,10 @@ public class Prediction {
      * @return an ArrayList with the predicted grades, will be empty if they can't be predicted
      */
     public ArrayList<Course> getPrediction(){
-        int countLeft = 0;
         float prediction;
-        int newECTS = 0;
-        float scoreLeft = 0F;
-        float newAverage = 0F;
+        int newECTS;
+        float scoreLeft;
+        float newAverage;
         ArrayList<Course> predictedCourses = new ArrayList<>();
 
         if(!canPredict())
@@ -48,16 +53,23 @@ public class Prediction {
             if(c.getGrade() < 9.5){
                 newECTS = student.getCompletedECTs() + c.getEcts();
                 scoreLeft = student.getIntendedAverage() - student.getAverage();
-                newAverage = student.getAverage() + (scoreLeft / countLeft);
+                newAverage = student.getAverage() + (scoreLeft / coursesLeft);
 
                 prediction = newAverage * newECTS;
 
                 for(Course completed: this.student.getCourses().values())
                     prediction -= (completed.getGrade() * completed.getEcts());
                 prediction /= c.getEcts();
+
+                predictedCourses.add(new Course(c.getName(),
+                                                Tag.valueOf(c.getTag()),
+                                                c.getEcts(),
+                                                prediction,
+                                                c.getAno(),
+                                                c.getSemestre()));
             }
 
-            predictedCourses.add(new Course(c.getName(), Tag.valueOf(c.getTag()), c.getEcts(), prediction, c.getAno(), c.getSemestre()));
+
 
         }
 
@@ -69,6 +81,10 @@ public class Prediction {
      * @return whether the grade is predictable or not
      */
     public boolean canPredict(){
+
+        if (student.getCompletedECTs()==180)
+            return false;
+
         int countTag1 = 0;
         int countTag2 = 0;
         int countTag3 = 0;
@@ -97,8 +113,6 @@ public class Prediction {
                         break;
                 }
             }
-            else
-                coursesLeft++;
         }
 
         if(countTag1 > 0 && countTag2 > 0 && countTag3 > 0 && countTag4 > 0 && countTag5 > 0)
@@ -112,13 +126,24 @@ public class Prediction {
      * @return whether the prediction is reachable or not
      */
     public boolean isReachable(){
-        Student testStudent = new Student(student.getIntendedAverage(),
-                                            student.getAverage(),
-                                            student.getPredictionAverage(),
-                                            student.getBologna(),
-                                            student.getCompletedECTs());
 
-        testStudent.setBranch(Branch.valueOf(student.getBranch()),student.getCourses());
+        float testIntendedAverage = student.getIntendedAverage();
+        float testAverage = student.getAverage();
+        float testPredictionAverage = student.getPredictionAverage();
+        char testBologna = student.getBologna();
+        int testCompletedECTS = student.getCompletedECTs();
+
+
+        Student testStudent = new Student(testIntendedAverage ,
+                                            testAverage,
+                                            testPredictionAverage,
+                                            testBologna,
+                                            testCompletedECTS);
+
+        Branch testBranch = Branch.valueOf(student.getBranch());
+        Map<String, Course> testMap = new HashMap<>();
+        testMap.putAll(student.getCourses());
+        testStudent.setBranch(testBranch,testMap);
 
         for(Course c: testStudent.getCourses().values())
             if(c.getGrade() < 9.5)
