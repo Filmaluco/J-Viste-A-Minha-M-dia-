@@ -3,13 +3,16 @@ package pt.isec.gps1819g11.javisteaminhamedia.Models;
 import android.util.Log;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Branch;
 import pt.isec.gps1819g11.javisteaminhamedia.Modules.Bologna;
+import pt.isec.gps1819g11.javisteaminhamedia.Modules.ECTSCalculator;
 import pt.isec.gps1819g11.javisteaminhamedia.Modules.Prediction;
 
 /**
@@ -175,7 +178,9 @@ public class Student implements Serializable {
      * @param value is the value to associate with that course
      */
     public void setGrade(String key, float value){
-        this.courses.get(key).setGrade(value);
+        Course temp = this.courses.get(key);
+        temp.setGrade(value);
+        this.completedECTs += temp.getEcts();
     }
 
     //----------------------------------------------------------------------------------------------
@@ -207,45 +212,32 @@ public class Student implements Serializable {
      *
      * @return float value of the calculated average
      */
-    private float calculateAverage(){
-        average = 0;
-        int nGrades = 0;
-        for(Course c : courses.values()){
-            if(c.getGrade() > 9.5)
-            {
-                average += (c.getGrade()*c.getEcts());
-                nGrades++;
-            }
-
-        }
-
-        return average/=nGrades;
+    public float calculateAverage(){
+        int nEcts = 0;
+        average = ECTSCalculator.getAverage(this);
+        // = Math.round(average * 10) / 10.0;
+        DecimalFormat df = new DecimalFormat("#.###");
+        String averageWithOneDecimalPlace = df.format(average);
+        average = Float.parseFloat(averageWithOneDecimalPlace);
+        return average;
     }
 
     /**
-     * @param c is the course which will have its grade predicted
+     *
      * @return float value of the predicted grade
      */
-    private float calculatePrediction(Course c){
-        float prediction = 0F;
-        int newECTS = completedECTs + c.getEcts();
-        float scoreLeft = intendedAverage - average;
-        float newAverage = average /*+ (scoreLeft/ "numero de cadeiras que faltam fazer")*/;
 
-        prediction = newAverage * newECTS;
+    public ArrayList<Course> calculatePrediction(){
+        Prediction prediction = new Prediction(this);
 
-        for(Course completed : courses.values())
-            prediction -= (completed.getGrade() * completed.getEcts());
+        return prediction.getPrediction();
 
-        prediction /= c.getEcts();
-
-
-        return prediction;
     }
 
     /**
      * Converts the user average to the bologna ranking system
      */
+
     public void convertToBologna(){
         char response = '#';
         try {

@@ -7,9 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import pt.isec.gps1819g11.javisteaminhamedia.Activities.CourseAdapter;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
+import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.R;
 
@@ -21,8 +26,11 @@ public class PredictionFragment extends Fragment {
     TextView currentAverage;
     TextView intendedAverage;
     TextView bolognaAverage;
+    ListView gradesPrediction;
     Student student;
     MainActivity mainActivity;
+    ArrayList<Course> dataModels;
+    public static CourseAdapter adapter;
 
     public PredictionFragment() {
         // Required empty public constructor
@@ -42,6 +50,7 @@ public class PredictionFragment extends Fragment {
         currentAverage = (TextView) view.findViewById(R.id.current_average);
         intendedAverage = (TextView) view.findViewById(R.id.intended_average);
         bolognaAverage = (TextView) view.findViewById(R.id.bologna_average);
+        gradesPrediction = (ListView) view.findViewById(R.id.grades_prediction);
         mainActivity = (MainActivity) getActivity();
         student = mainActivity.student;
 
@@ -54,12 +63,24 @@ public class PredictionFragment extends Fragment {
                 ((TextView)mainActivity.findViewById(R.id.bologna_average)).setText(String.valueOf(student.getBologna()));
             }
         });
+        setupPredictedGrades();
 
         currentAverage.setText(Float.toString(student.getAverage()));
         intendedAverage.setText(Float.toString(student.getIntendedAverage()));
         bolognaAverage.setText(Character.toString(student.getBologna()));
 
         return view;
+    }
+
+    private void setupPredictedGrades() {
+        dataModels = new ArrayList<>();
+        dataModels = student.calculatePrediction();
+
+        adapter = new CourseAdapter(dataModels, getContext());
+        adapter.setLayout(R.layout.listview_prediction_row_item);
+
+        gradesPrediction.setAdapter(adapter);
+
     }
 
 }

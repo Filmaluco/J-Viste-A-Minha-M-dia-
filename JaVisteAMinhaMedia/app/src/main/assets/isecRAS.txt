@@ -6,13 +6,13 @@
  1 1 5 0 Group Gestão
  1 2 6 0 Logic Análise Matemática II
  1 2 5 0 Neutral Fundamentos de Computação Gráfica
- 1 2 5 0 Programing Sistemas Operativos
  1 2 5 0 Programing Programação
  1 2 5 0 Theory Tecnologias e Arquitecturas de Computadores
  1 2 4 0 Logic Electrónica
+ 1 2 5 0 Logic Métodos Estatísticos
  2 1 5 0 Programing Programação Orientada a Objectos
+ 2 1 5 0 Programing Sistemas Operativos
  2 1 5 0 Networking Introdução às Redes de Comunicação
- 2 1 5 0 Logic Métodos Estatísticos
  2 1 5 0 Programing Introdução à Inteligência Artificial
  2 1 5 0 Logic Base de Dados
  2 1 5 0 Neutral Investigação Operacional
@@ -29,4 +29,3 @@
  3 1 6 0 Programing Programação Web
  3 2 3 0 Group Ética e Deontologia
  3 2 27 0 Programing Projecto ou Estágio
-
