@@ -2,9 +2,11 @@ package pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments;
 
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +16,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import pt.isec.gps1819g11.javisteaminhamedia.Activities.CourseAdapter;
 import pt.isec.gps1819g11.javisteaminhamedia.DialogInputs.UpdateGradesDialog;
-import pt.isec.gps1819g11.javisteaminhamedia.Enumerations.Tag;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Course;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
@@ -88,13 +88,21 @@ public class YearFragment extends Fragment {
         lvSem1.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Ao clicar nos items da primeira listview
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = lvSem1.getItemAtPosition(position);
+                final Object o = lvSem1.getItemAtPosition(position);
                 Course c = (Course)o;
                 String gradeName = c.getName();
                 Log.i("Teste","->" + gradeName);
 
                 FragmentManager fm = getFragmentManager();
                 UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(student,gradeName);
+
+                updateGradesDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        refreshListViewText(lvSem1, o);
+                    }
+                });
+
                 updateGradesDialog.show(fm, "Update Grade");
             }
         });
@@ -102,13 +110,21 @@ public class YearFragment extends Fragment {
         lvSem2.setOnItemClickListener(new AdapterView.OnItemClickListener() { //Ao clicar nos items da primeira listview
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Object o = lvSem2.getItemAtPosition(position);
+                final Object o = lvSem2.getItemAtPosition(position);
                 Course c = (Course)o;
                 String gradeName = c.getName();
                 Log.i("Teste","->" + gradeName);
 
                 FragmentManager fm = getFragmentManager();
                 UpdateGradesDialog updateGradesDialog = new UpdateGradesDialog(student,gradeName);
+
+                updateGradesDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+                        refreshListViewText(lvSem2, o);
+                    }
+                });
+
                 updateGradesDialog.show(fm, "Update Grade");
             }
         });
@@ -134,6 +150,13 @@ public class YearFragment extends Fragment {
     }
 
 
-
-
+    public void refreshListViewText(ListView list, Object o){
+        int start = list.getFirstVisiblePosition();
+        for(int i=start, j=list.getLastVisiblePosition();i<=j;i++)
+            if(o==list.getItemAtPosition(i)){
+                View view = list.getChildAt(i-start);
+                list.getAdapter().getView(i, view, list);
+                break;
+            }
+    }
 }

@@ -3,9 +3,12 @@ package pt.isec.gps1819g11.javisteaminhamedia.DialogInputs;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import pt.isec.gps1819g11.javisteaminhamedia.Activities.Fragments.YearFragment;
 import pt.isec.gps1819g11.javisteaminhamedia.MainActivity;
 import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
 import pt.isec.gps1819g11.javisteaminhamedia.Modules.StudentManager;
@@ -26,7 +30,6 @@ import pt.isec.gps1819g11.javisteaminhamedia.R;
 @SuppressLint("ValidFragment")
 public class UpdateGradesDialog extends DialogFragment implements View.OnClickListener {
 
-    //TODO: expand for Prediction (Constructor sets hint and title text)
     public Dialog dialog;
     private Button cancel, update;
     public EditText inputGrade;
@@ -34,6 +37,8 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
     String gradeName;
     MainActivity mainActivity;
     Student student;
+
+    private DialogInterface.OnDismissListener onDismissListener;
 
 
     @SuppressLint("ValidFragment")
@@ -95,6 +100,18 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                 break;
             default:
                 break;
+        }
+    }
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.onDismissListener = onDismissListener;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        if (onDismissListener != null) {
+            onDismissListener.onDismiss(dialog);
         }
     }
 }

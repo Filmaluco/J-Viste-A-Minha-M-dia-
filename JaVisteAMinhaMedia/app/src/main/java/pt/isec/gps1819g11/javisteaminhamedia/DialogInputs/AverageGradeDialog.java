@@ -68,8 +68,8 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
 
                 String value = String.valueOf(inputGrade.getText());
                 if(!value.isEmpty()){
-                    float intendedAverage = Integer.parseInt(value);
-                    if(intendedAverage <= 20 && intendedAverage > 9.5 ){
+                    float intendedAverage = Float.parseFloat(value);
+                    if(intendedAverage <= 20 && intendedAverage >= 9.5 ){
                         try{
                         student.setIntendedAverage(intendedAverage);
                         studentManager.savesStudent(student);

@@ -26,6 +26,7 @@ public class PredictionFragment extends Fragment {
     TextView currentAverage;
     TextView intendedAverage;
     TextView bolognaAverage;
+    TextView predictionGradesInfo;
     ListView gradesPrediction;
     Student student;
     MainActivity mainActivity;
@@ -50,6 +51,7 @@ public class PredictionFragment extends Fragment {
         currentAverage = (TextView) view.findViewById(R.id.current_average);
         intendedAverage = (TextView) view.findViewById(R.id.intended_average);
         bolognaAverage = (TextView) view.findViewById(R.id.bologna_average);
+        predictionGradesInfo = (TextView) view.findViewById(R.id.prediction_grades_info);
         gradesPrediction = (ListView) view.findViewById(R.id.grades_prediction);
         mainActivity = (MainActivity) getActivity();
         student = mainActivity.student;
@@ -76,6 +78,16 @@ public class PredictionFragment extends Fragment {
         dataModels = new ArrayList<>();
 
         dataModels = student.calculatePrediction();
+
+        if (dataModels.isEmpty()){
+            predictionGradesInfo.setTextColor(getResources().getColor(R.color.colorPrimary));
+            predictionGradesInfo.setTextSize(20);
+            predictionGradesInfo.setText(getResources().getText(R.string.prediciton_grades_error));
+        }else{
+            predictionGradesInfo.setTextColor(getResources().getColor(R.color.colorAccent));
+            predictionGradesInfo.setTextSize(14);
+            predictionGradesInfo.setText(getResources().getText(R.string.prediciton_grades_info));
+        }
 
         adapter = new CourseAdapter(dataModels, getContext());
         adapter.setLayout(R.layout.listview_prediction_row_item);
