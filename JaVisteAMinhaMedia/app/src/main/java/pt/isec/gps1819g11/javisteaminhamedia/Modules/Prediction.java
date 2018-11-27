@@ -146,10 +146,6 @@ public class Prediction {
         testMap.putAll(student.getCourses());
         testStudent.setBranch(testBranch,testMap);
 
-        for(Course c: testStudent.getCourses().values())
-            if(c.getGrade() < 9.5)
-                c.setGrade(20F);
-
         if(this.getTestAverage(testStudent) < student.getIntendedAverage())
             return false;
         else
@@ -162,7 +158,10 @@ public class Prediction {
         float average = 0F;
 
         for (Course c: t.getCourses().values()) {
-            average += (c.getGrade() * c.getEcts());
+            if (c.getGrade() < 9.5)
+                average += c.getEcts() * 20f;
+            else
+                average += (c.getGrade() * c.getEcts());
         }
 
         return average / 180;
