@@ -17,14 +17,10 @@ To access all the documentation related to this project please consult the proje
 For any code related documentarion please visit the project documentation ([link](https://filmaluco.github.io/J-Viste-A-Minha-M-dia-/))
 
 ## Features
- * Bologna Score conversion (planned)
- * Grades Predection (planned)
- * Average Calculation (planned)
- * Grades Management (planned)
-
-## Changelog
-
-Changelog is available [here](https://github.com/Filmaluco/J-Viste-A-Minha-M-dia-/blob/master/changelog.md)
+ * Bologna Score conversion
+ * Grades Predection
+ * Average Calculation
+ * Grades Management
 
 ## License
 
