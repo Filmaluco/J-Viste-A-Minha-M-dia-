@@ -64,7 +64,8 @@ public class PredictionFragment extends Fragment {
 
     private void setupPredictedGrades() {
         dataModels = new ArrayList<>();
-        //dataModels = student.calculatePrediction(student);
+
+        dataModels = student.calculatePrediction();
 
         adapter = new CourseAdapter(dataModels, getContext());
         adapter.setLayout(R.layout.listview_prediction_row_item);

@@ -80,6 +80,7 @@ public class YearFragment extends Fragment {
 
             setListViewHeightBasedOnChildren(lvSem1);
             setListViewHeightBasedOnChildren(lvSem2);
+          
         }catch (Exception e){
             Log.i("Exceção","setupListViews exceção " + e);
         }
