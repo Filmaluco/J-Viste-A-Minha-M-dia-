@@ -74,10 +74,10 @@ public class UpdateGradesDialog extends DialogFragment implements View.OnClickLi
                 if(!value.isEmpty()){
                    float grade = Integer.parseInt(value);
                     if(grade <= 20 && grade > 9.5 ){
-                        //TODO: Update grade
                         try {
                             student.setGrade(gradeName, grade);
                             student.calculateAverage();
+                            student.convertToBologna();
                             studentManager.savesStudent(student);
 
                             dismiss();
