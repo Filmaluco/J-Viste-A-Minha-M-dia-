@@ -73,8 +73,12 @@ public class CourseAdapter extends ArrayAdapter<Course> implements View.OnClickL
 
         viewHolder.txtName.setText(dataModel.getName());
 
-        viewHolder.textCircle.setText(Float.toString(dataModel.getGrade()));
+        float grade = dataModel.getGrade();
 
+        if (grade>0)
+            viewHolder.textCircle.setText(Float.toString(grade));
+        else
+            viewHolder.textCircle.setText("");
 
         // Return the completed view to render on screen
         return convertView;
