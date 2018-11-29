@@ -37,7 +37,7 @@ public class StudentManager {
     private static final String ASSET_ISEC_DA_FILE = "isecDA.txt";
     private static final String ASSET_ISEC_SI_FILE = "isecSI.txt";
     private static final String ASSET_ISEC_RAS_FILE = "isecRAS.txt";
-    //Private Variables
+    //Protected Variables
     Context context;
 
     //----------------------------------------------------------------------------------------------
@@ -49,7 +49,7 @@ public class StudentManager {
      */
     public StudentManager(Context context) {
         this.context = context;
-        if(fileExist(USER_DATA_FILE)){
+        if(context.getFileStreamPath(USER_DATA_FILE).exists()){
             Log.i(TAG, "Student data found");
             return;
         }
@@ -70,7 +70,7 @@ public class StudentManager {
      * @return Student instance
      */
     public Student loadStudent(){
-        Student loadedStudent;
+        Student loadedStudent = new Student();
         ObjectInputStream in = null;
 
         try {
@@ -82,9 +82,12 @@ public class StudentManager {
 
             loadedStudent = (Student) in.readObject();
 
-        } catch (Exception e) {
-            loadedStudent = new Student();
-            Log.w(TAG, "Failed to load student data \n" + e);
+        } catch (FileNotFoundException e) {
+            Log.e(TAG, "Failed to load student data, file not founded \n", e);
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to load student data, failed to open file <"+USER_DATA_FILE+" \n", e);
+        } catch (ClassNotFoundException e) {
+            Log.e(TAG, "Failed to load student data, failed to load data from memory \n", e);
         }finally {
             if(in != null){
                 try {
@@ -104,7 +107,7 @@ public class StudentManager {
      * @param newBranch to attribute the student
      */
     public void updateStudentBranch(Student student, Branch newBranch){
-        student.setBranch(newBranch, loadGrades(newBranch));
+        student.setBranch(newBranch, loadCourses(newBranch));
         this.savesStudent(student);
     }
 
@@ -113,17 +116,25 @@ public class StudentManager {
      * @param student
      */
     public void savesStudent(Student student){
-        FileOutputStream fos;
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
 
         try {
             fos = context.openFileOutput(USER_DATA_FILE, Context.MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos = new ObjectOutputStream(fos);
             oos.writeObject(student);
-            oos.close();
         } catch (FileNotFoundException e) {
             Log.w(TAG, "Failed to create <" + USER_DATA_FILE + ">");
         } catch (IOException e) {
             Log.w(TAG, "Failed to create new student data file \n" + e);
+        }finally {
+            if (oos != null) {
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "Error closing userData <" + USER_DATA_FILE + "> \n", e);
+                }
+            }
         }
     }
 
@@ -135,18 +146,26 @@ public class StudentManager {
      */
     private void createNewStudent(){
         Student defaultStudent = new Student();
-        defaultStudent.setBranch(Branch.DA, loadGrades(Branch.DA));
-        FileOutputStream fos;
+        defaultStudent.setBranch(Branch.DA, loadCourses(Branch.DA));
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
 
         try {
             fos = context.openFileOutput(USER_DATA_FILE, Context.MODE_PRIVATE);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos = new ObjectOutputStream(fos);
             oos.writeObject(defaultStudent);
-            oos.close();
         } catch (FileNotFoundException e) {
             Log.w(TAG, "Failed to create <" + USER_DATA_FILE + ">");
         } catch (IOException e) {
             Log.w(TAG, "Failed to create new student data file \n" + e);
+        }finally {
+            if(oos != null){
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "Error closing user data <" + USER_DATA_FILE + "> \n", e);
+                }
+            }
         }
     }
 
@@ -157,31 +176,31 @@ public class StudentManager {
      * @param branch
      * @return courses of the given branch
      */
-    private Map<String, Course> loadGrades(Branch branch){
+    private Map<String, Course> loadCourses(Branch branch){
 
-        Map<String, Course> grades = new HashMap<>();
+        Map<String, Course> courses = new HashMap<>();
 
         try {
             switch (branch) {
                 case DA:
-                    grades = loadGradesFromAsset(ASSET_ISEC_DA_FILE);
+                    courses = loadCourseFromAsset(ASSET_ISEC_DA_FILE);
                     break;
                 case SI:
-                    grades = loadGradesFromAsset(ASSET_ISEC_SI_FILE);
+                    courses = loadCourseFromAsset(ASSET_ISEC_SI_FILE);
                     break;
                 case RAS:
-                    grades = loadGradesFromAsset(ASSET_ISEC_RAS_FILE);
+                    courses = loadCourseFromAsset(ASSET_ISEC_RAS_FILE);
                     break;
                 default:
                     Log.w(TAG, "Branch <" + branch.name() + "> is not yet implemented");
-                    throw new UnsupportedOperationException("Branch <" + branch.name() + "> is not yet implemented");
+                    throw new UnsupportedOperationException("Branch <" + branch.name() + "> is not yet implemented" );
             }
-        }catch (Exception e){
-                Log.w(TAG, "Branch <" + branch.name() + "> failed to load \n" + e);
-                throw new UnsupportedOperationException("Branch <" + branch.name() + "> is not yet implemented");
+        }catch (IllegalAccessException e){
+                Log.e(TAG, "Branch <" + branch.name() + "> failed to load from memory \n", e);
+                throw new IllegalStateException("Branch <" + branch.name() + "> was not loaded");
         }
 
-        return grades;
+        return courses;
     }
 
     /**
@@ -189,9 +208,9 @@ public class StudentManager {
      * @param assetName
      * @return hash map from the specified map
      */
-    private Map<String,Course> loadGradesFromAsset(String assetName) throws IllegalAccessException {
+    private Map<String,Course> loadCourseFromAsset(String assetName) throws IllegalAccessException {
         BufferedReader reader = null;
-        Map<String, Course> grades = new HashMap<>();
+        Map<String, Course> course = new HashMap<>();
         if(!assetExist(assetName)){
             throw new IllegalAccessException("Can't access file <" + assetName);
         }
@@ -214,27 +233,31 @@ public class StudentManager {
 
                     Course tempCourse = new Course(tempName, tag, ects, grade,ano,semestre);
 
-                    grades.put(tempCourse.getName(), tempCourse);
-                }catch (Exception e){
-                    Log.w(TAG, "Failed to load line <"+readLine+"> \n" + e);
-                    continue;
+                    course.put(tempCourse.getName(), tempCourse);
+                }catch (NumberFormatException e){
+                    Log.e(TAG, "Failed to parse the value on <"+readLine+">", e);
+                }catch (IllegalArgumentException  e){
+                    Log.e(TAG, "Failed to load the tag on <"+readLine+"> \n", e);
+                }
+                catch (Exception e){
+                    Log.e(TAG, "Failed to load line <"+readLine+"> \n", e);
                 }
             }
 
-
         } catch (IOException e) {
-            Log.w(TAG, "Error loading asset <" + assetName + "> \n" + e );
+            Log.e(TAG, "Error loading asset <" + assetName + "> \n", e );
+            throw new IllegalAccessException("Can't access file <" + assetName);
         } finally {
         if (reader != null) {
             try {
                 reader.close();
             } catch (IOException e) {
-                Log.w(TAG, "Error closing asset <" + assetName + "> \n" + e );
+                Log.e(TAG, "Error closing asset <" + assetName + "> \n", e );
             }
         }
     }
 
-        return grades;
+        return course;
     }
 
     /**
@@ -243,24 +266,25 @@ public class StudentManager {
      * @return true if exists
      */
     private boolean assetExist(String assetName) {
+        InputStream file = null;
         try {
-            InputStream file = context.getAssets().open(assetName);
+            file = context.getAssets().open(assetName);
         } catch (IOException e) {
             Log.w(TAG, "Asset doesn't exit");
-            return false;
+        }finally {
+            if(file != null) {
+                try {
+                    file.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "Failed to close asset <" + assetName + ">", e);
+                }
+            }
+
         }
-        return true;
+        return file != null;
     }
 
-    /**
-     * Checks if the given file exists in internal storage
-     * @param fname in internal storage
-     * @return true if exists
-     */
-    private boolean fileExist(String fname){
-        File file = context.getFileStreamPath(fname);
-        return file.exists();
-    }
+
 
 
 }
