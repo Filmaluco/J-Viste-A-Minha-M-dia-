@@ -122,7 +122,7 @@ public class Prediction {
                 prediction /= c.getEcts();
 
                 if(prediction > 20F)
-                    prediction /= 2;
+                    prediction = 20F;
 
                 DecimalFormat df = new DecimalFormat("#.###");
                 String averageWithOneDecimalPlace = df.format(prediction);
