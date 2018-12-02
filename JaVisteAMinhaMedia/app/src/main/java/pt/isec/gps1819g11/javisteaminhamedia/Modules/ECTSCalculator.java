@@ -12,18 +12,17 @@ import pt.isec.gps1819g11.javisteaminhamedia.Models.Student;
  */
 public class ECTSCalculator {
     public static float getAverage(Student student){
-        float average = student.getAverage();
-        int nEcts = 0 ;
+        float average = 0;
+        int completedECTS = 0;
 
         for(Course c : student.getCourses().values()){
             if(c.getGrade() >= 9.5 && c.getGrade() <= 20)
             {
-                average = average + (c.getGrade()*c.getEcts());
-                nEcts += c.getEcts();
-
+                average += (c.getGrade()*c.getEcts());
+                completedECTS += c.getEcts();
             }
 
         }
-       return average / nEcts;
+       return average / completedECTS;
     }
 }
