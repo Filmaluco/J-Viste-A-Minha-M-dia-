@@ -121,6 +121,9 @@ public class Prediction {
 
                 prediction /= c.getEcts();
 
+                if(prediction < 9.5F)
+                    prediction < 9.5F;
+
                 if(prediction > 20F)
                     prediction = 20F;
 
