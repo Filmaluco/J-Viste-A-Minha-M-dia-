@@ -88,6 +88,9 @@ public class AverageGradeDialog extends DialogFragment implements View.OnClickLi
                         inputGrade.setHint(R.string.invalid_inserted_grade);
                     }
                 }
+
+                mainActivity.recreate();
+                mainActivity.bottomNavbar.setSelectedItemId(R.id.navbar_prediction);
                 break;
             default:
                 break;
