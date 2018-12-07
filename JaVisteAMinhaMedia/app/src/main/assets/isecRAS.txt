@@ -28,4 +28,4 @@
  3 1 6 0 Networking Gestão de Redes
  3 1 6 0 Programing Programação Web
  3 2 3 0 Group Ética e Deontologia
- 3 2 27 0 Networking Projecto ou Estágio
+ 3 2 27 0 Programing Projecto ou Estágio

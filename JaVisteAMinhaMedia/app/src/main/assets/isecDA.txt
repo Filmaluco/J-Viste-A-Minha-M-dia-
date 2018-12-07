@@ -18,7 +18,7 @@
  2 1 5 0 Neutral Investigação Operacional
  2 2 5 0 Programing Sistemas Operativos II
  2 2 5 0 Group Empreendedorismo e Inovação
- 2 2 5 0 Theory Interação Pessoa-Máquina
+ 2 2 5 0 Theory Interacção Pessoa-Máquina
  2 2 5 0 Programing Programação Avançada
  2 2 5 0 Theory Modelação e Design
  2 2 5 0 Logic Conhecimento e Raciocínio
