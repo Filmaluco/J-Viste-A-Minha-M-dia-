@@ -1,5 +1,6 @@
 package pt.isec.gps1819g11.javisteaminhamedia.Modules;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,9 +19,11 @@ public class Prediction {
 
     private Student student;
     private int coursesLeft;
+    private int higherTag;
     public Prediction(Student t){
         student = t;
         coursesLeft = 0;
+        higherTag = 1;
         for (Course c: t.getCourses().values()) {
             if(c.getGrade() < 9.5)
                 coursesLeft++;
@@ -51,15 +54,82 @@ public class Prediction {
         for (Course c: this.getStudent().getCourses().values()) {
             prediction = 0F;
             if(c.getGrade() < 9.5){
-                newECTS = student.getCompletedECTs() + c.getEcts();
                 scoreLeft = student.getIntendedAverage() - student.getAverage();
-                newAverage = student.getAverage() + (scoreLeft / coursesLeft);
+                newAverage = 0F;
+                switch(higherTag){
+                    case 1:
+                        if(c.getTag().equals("Logic"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.5F);
+                        else if (c.getTag().equals("Networking"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.05F);
+                        else if (c.getTag().equals("Neutral"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.1F);
+                        else
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.16F);
+                        break;
+                    case 2:
+                        if(c.getTag().equals("Theory"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.5F);
+                        else if (c.getTag().equals("Networking"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.05F);
+                        else if (c.getTag().equals("Neutral"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.1F);
+                        else
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.16F);
+                        break;
+                    case 3:
+                        if (c.getTag().equals("Networking"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.5F);
+                        else if (c.getTag().equals("Neutral"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.1F);
+                        else
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.15F);
+                        break;
+                    case 4:
+                        if(c.getTag().equals("Group"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.5F);
+                        else if (c.getTag().equals("Networking"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.05F);
+                        else if (c.getTag().equals("Neutral"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.1F);
+                        else
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.16F);
+                        break;
+                    case 5:
+                        if(c.getTag().equals("Programing"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.5F);
+                        else if (c.getTag().equals("Networking"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.05F);
+                        else if (c.getTag().equals("Neutral"))
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.1F);
+                        else
+                            newAverage = student.getIntendedAverage() + ((scoreLeft / coursesLeft) * 0.16F);
+                        break;
+                }
 
-                prediction = newAverage * newECTS;
+                if(c.getEcts() == 3)
+                    newAverage = student.getAverage() + ((scoreLeft / coursesLeft));
+
+                if (c.getEcts() == 27 || c.getEcts() == 3)
+                    prediction = newAverage * (student.getCompletedECTs() + c.getEcts());
+                else
+                    prediction = newAverage * student.getCompletedECTs();
 
                 for(Course completed: this.student.getCourses().values())
-                    prediction -= (completed.getGrade() * completed.getEcts());
+                    if(completed.getGrade() >= 9.5F && completed.getGrade() <= 20F)
+                        prediction -= (completed.getGrade() * completed.getEcts());
+
                 prediction /= c.getEcts();
+
+                if(prediction < 9.5F)
+                    prediction = 9.5F;
+
+                if(prediction > 20F)
+                    prediction = 20F;
+
+                DecimalFormat df = new DecimalFormat("#.###");
+                String averageWithOneDecimalPlace = df.format(prediction);
+                prediction = Float.parseFloat(averageWithOneDecimalPlace);
 
                 predictedCourses.add(new Course(c.getName(),
                                                 Tag.valueOf(c.getTag()),
@@ -114,6 +184,18 @@ public class Prediction {
                 }
             }
         }
+
+        if(this.getStudent().getBranch().equals("RAS"))
+            higherTag = 3;
+        else {
+            if(higherTag < countTag2)
+                higherTag = 2;
+            if(higherTag < countTag4)
+                higherTag = 4;
+            if(higherTag < countTag5)
+                higherTag = 5;
+        }
+
 
         if(countTag1 > 0 && countTag2 > 0 && countTag3 > 0 && countTag4 > 0 && countTag5 > 0)
             return true;
