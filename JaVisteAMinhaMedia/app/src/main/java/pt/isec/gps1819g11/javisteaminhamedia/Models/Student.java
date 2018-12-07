@@ -31,6 +31,7 @@ public class Student implements Serializable {
     private char bologna;
     private Map<String, Course> courses;
     private int completedECTs;
+    private ArrayList<Course> predictedCourses;
 
     //----------------------------------------------------------------------------------------------
     //      CONSTRUCTOR'S
@@ -48,6 +49,7 @@ public class Student implements Serializable {
         this.bologna = '#';
         this.completedECTs = 0;
         this.courses = null;
+        this.predictedCourses = null;
     }
 
     /**
@@ -66,6 +68,7 @@ public class Student implements Serializable {
         this.bologna = bologna;
         this.completedECTs = completedECTs;
         this.courses = null;
+        this.predictedCourses = null;
     }
 
 
@@ -124,14 +127,6 @@ public class Student implements Serializable {
 
     /**
      *
-     * @return the simulation list of the courses the student needs to improve to reach the pretended average
-     */
-    private String[] getSimulationGrades(){
-        throw new UnsupportedOperationException("Operation not implemented yet");
-    }
-
-    /**
-     *
      * @return the hashMap of the courses this student attends
      */
     public Map<String, Course> getCourses(){
@@ -162,6 +157,7 @@ public class Student implements Serializable {
      */
     public void setIntendedAverage(float pretendedAverage) {
         this.intendedAverage = pretendedAverage;
+        this.predictedCourses = calculatePrediction();
     }
 
     /**
@@ -215,7 +211,6 @@ public class Student implements Serializable {
     public float calculateAverage(){
         int nEcts = 0;
         average = ECTSCalculator.getAverage(this);
-        // = Math.round(average * 10) / 10.0;
         DecimalFormat df = new DecimalFormat("#.###");
         String averageWithOneDecimalPlace = df.format(average);
         average = Float.parseFloat(averageWithOneDecimalPlace);
@@ -231,8 +226,8 @@ public class Student implements Serializable {
     public ArrayList<Course> calculatePrediction(){
 
         Prediction prediction = new Prediction(this);
-
-        return prediction.getPrediction();
+        predictedCourses = prediction.getPrediction();
+        return predictedCourses;
 
     }
 
