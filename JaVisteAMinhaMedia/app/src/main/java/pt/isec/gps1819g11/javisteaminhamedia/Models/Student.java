@@ -149,6 +149,7 @@ public class Student implements Serializable {
     public void setBranch(Branch branch, Map<String, Course> courses) {
         this.branch = branch;
         this.courses = courses;
+        this.average = 0F;
     }
 
     /**
