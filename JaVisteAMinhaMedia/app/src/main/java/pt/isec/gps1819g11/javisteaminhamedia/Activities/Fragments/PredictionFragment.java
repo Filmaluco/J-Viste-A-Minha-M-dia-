@@ -79,6 +79,12 @@ public class PredictionFragment extends Fragment {
 
         dataModels = student.calculatePrediction();
 
+        for(int i = 0 ; i< dataModels.size() ;i++){
+            if(dataModels.get(i).getGrade()>20 || dataModels.get(i).getGrade()<9.5){
+                dataModels.remove(i);
+            }
+        }
+
         if (dataModels.isEmpty()){
             predictionGradesInfo.setTextColor(getResources().getColor(R.color.colorPrimary));
             predictionGradesInfo.setTextSize(20);
