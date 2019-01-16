@@ -1,7 +1,7 @@
 [![Web-1920-1.jpg](https://i.postimg.cc/cHQyC3gY/Web-1920-1.jpg)](https://postimg.cc/cg455rc4)
 
 [![dash-%20-blue.svg](https://img.shields.io/badge/Dashboard-%20-blue.svg)](https://sites.google.com/view/lei-gps1819-g11)
-[![doc-%20-blue.svg](https://img.shields.io/badge/Documention-%20-blue.svg)](https://filmaluco.github.io/J-Viste-A-Minha-M-dia-/)
+[![doc-%20-blue.svg](https://img.shields.io/badge/JavaDoc-%20-blue.svg)](https://filmaluco.github.io/J-Viste-A-Minha-M-dia-/)
 [![License-MIT%20-brightgreen.svg](https://img.shields.io/badge/License-MIT%20-brightgreen.svg)](https://github.com/Filmaluco/J-Viste-A-Minha-M-dia-/blob/master/LICENSE)
 
 ###### Built using:  [![androidStudio.svg](https://img.shields.io/badge/AndroidStudio-3.2.1-orange.svg)](https://developer.android.com/studio/)  [![androidJRE.svg](https://img.shields.io/badge/JRE-1.8.0_152-orange.svg)](https://developer.android.com/studio/) [![gradle.svg](https://img.shields.io/badge/Gradle-4.6-orange.svg)](https://docs.gradle.org/4.6/release-notes.html) [![AndroidAPI.svg](https://img.shields.io/badge/API-22-orange.svg)](https://developer.android.com/about/versions/android-5.1)
